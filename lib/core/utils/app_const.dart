@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+abstract class AppConst {
+  static const double kDefaultPadding = 24.0;
+  static const double kMediumPadding = 16.0;
+}
+
+SizedBox verticalSpace(double height) {
+  return SizedBox(height: height.h);
+}
+
+SizedBox horizontalSpace(double width) {
+  return SizedBox(width: width.w);
+}
+
+BoxShadow getBoxShadow() {
+  return BoxShadow(
+    offset: Offset(0, 3),
+    spreadRadius: 0,
+    blurRadius: 4,
+    // ignore: deprecated_member_use
+    color: Colors.black.withOpacity(0.03),
+  );
+}
