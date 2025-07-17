@@ -35,6 +35,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.1
+  flutter_launcher_icons: "^0.14.4"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/image/app_logo.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
