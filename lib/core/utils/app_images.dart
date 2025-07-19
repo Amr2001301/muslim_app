@@ -30,4 +30,6 @@ abstract class AppImages {
       'assets/svg/quran_icon_dis_active.svg';
   static const String suraNumber = 'assets/svg/Sura_number.svg';
   static const String azan = 'assets/image/azan_notification.jpg';
+  static const String us = 'assets/svg/US.svg';
+  static const String ar = 'assets/svg/YE.svg';
 }

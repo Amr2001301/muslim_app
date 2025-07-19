@@ -1,5 +1,16 @@
 {
     "search":"Search",
     "suras_list":"Suras List",
-    "ayah":"Ayah"
+    "ayah":"Ayah",
+    "next":"Next",
+    "previous":"Previous",
+    "onboarding1_title":"Chose your preferred language",
+    "onboarding2_title":"Welcome To Islami",
+    "onboarding2_desc":"We Are Very Excited To Have You In Our Community",
+    "onboarding3_title":"Reading the Quran",
+    "onboarding3_desc":"Read, and your Lord is the Most Generous",
+    "onboarding4_title":"Bearish",
+    "onboarding4_desc":"Praise the name of your Lord, the Most High",
+    "onboarding5_title":"Holy Quran Radio",
+    "onboarding5_desc":"You can listen to the Holy Quran Radio through the application for free and easily"
 }

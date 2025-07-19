@@ -1,6 +1,16 @@
 {
     "search": "بحث",
     "suras_list": "قائمة السور",
-    "ayah": "آية"
-
+    "ayah": "آية",
+    "next": "التالي",
+    "previous": "السابق",
+    "onboarding1_title":"اختر لغتك المفضلة",
+    "onboarding2_title": "مرحبا بكم في اسلامي",
+    "onboarding2_desc":"نحن متحمسون جدًا لوجودك في مجتمعنا",
+    "onboarding3_title":"قراءة القرآن",
+    "onboarding3_desc":"اقرأ وربك الأكرم",
+    "onboarding4_title":"سبحة",
+    "onboarding4_desc":"سبح اسم ربك الاعلى",
+    "onboarding5_title":"إذاعة القرآن الكريم",
+    "onboarding5_desc":"يمكنك الاستماع إلى إذاعة القرآن الكريم عبر التطبيق مجاناً وبكل سهولة"
 }
