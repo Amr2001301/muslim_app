@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/routes/routes.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
 import 'package:muslim_app/features/onboarding/data/model/onboarding_model.dart';
 import 'package:muslim_app/features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:muslim_app/features/onboarding/presentation/widgets/custom_onboarding_botton.dart';
 import 'package:muslim_app/features/onboarding/presentation/widgets/custom_page_view.dart';
 
 class OnbaordingScreen extends StatelessWidget {
@@ -23,80 +26,36 @@ class OnbaordingScreen extends StatelessWidget {
             builder: (context, state) {
               final cubit = context.read<OnboardingCubit>();
               final onboardingList = OnboardingModel.getOnBoardingList();
-
-              return Column(
+              return Stack(
                 children: [
-                  Expanded(
-                    child: PageView.builder(
-                      onPageChanged: cubit.onPageChanged,
-                      controller: cubit.pageController,
-                      itemCount: onboardingList.length,
-                      itemBuilder: (context, index) {
-                        return CustomPageView(
-                          onboardingModel: onboardingList[index],
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: AppConst.kDefaultPadding),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     children: [
-                      if (cubit.currentPage > 0)
-                        TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(
-                              Colors.transparent,
-                            ),
-                          ),
-                          onPressed: cubit.previousPage,
-                          child: Text(
-                            'previous'.tr(),
-                            style: AppStyles.style13SemiBold.copyWith(
-                              color: AppColors.goldDarkColor,
-                            ),
-                          ),
-                        )
-                      else
-                        const SizedBox(width: 64), // مساحة تعويضية
-
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(
-                          onboardingList.length,
-                          (index) => AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            height: 5,
-                            width: cubit.currentPage == index ? 25 : 5,
-                            decoration: BoxDecoration(
-                              color: cubit.currentPage == index
-                                  ? AppColors.goldDarkColor
-                                  : AppColors.gery600,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
+                      Expanded(
+                        child: PageView.builder(
+                          onPageChanged: cubit.onPageChanged,
+                          controller: cubit.pageController,
+                          itemCount: onboardingList.length,
+                          itemBuilder: (context, index) {
+                            return CustomPageView(
+                              onboardingModel: onboardingList[index],
+                            );
+                          },
                         ),
                       ),
-
-                      if (cubit.currentPage < onboardingList.length - 1)
-                        TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(
-                              Colors.transparent,
-                            ),
-                          ),
-                          onPressed: cubit.nextPage,
-                          child: Text(
-                            'next'.tr(),
-                            style: AppStyles.style13SemiBold.copyWith(
-                              color: AppColors.goldDarkColor,
-                            ),
-                          ),
-                        )
-                      else
-                        const SizedBox(width: 64),
+                      const SizedBox(height: AppConst.kDefaultPadding),
+                      CustomOnboardingBotton(),
                     ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.pushReplacementNamed(Routes.dashboard);
+                    },
+                    child: Text(
+                      'skip'.tr(),
+                      style: AppStyles.style13SemiBold.copyWith(
+                        color: AppColors.goldDarkColor,
+                      ),
+                    ),
                   ),
                 ],
               );
