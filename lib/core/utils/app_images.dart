@@ -32,4 +32,12 @@ abstract class AppImages {
   static const String azan = 'assets/image/azan_notification.jpg';
   static const String us = 'assets/svg/US.svg';
   static const String ar = 'assets/svg/YE.svg';
+  static const String hadithActive = 'assets/svg/hadith_active.svg';
+  static const String hadithDisActive = 'assets/svg/hdith_inactive.svg';
+  static const String radioActive = 'assets/svg/radio_active.svg';
+  static const String radioDisActive = 'assets/svg/radio_inactive.svg';
+  static const String sebhaActive = 'assets/svg/sebha_active.svg';
+  static const String sebhaDisActive = 'assets/svg/sebha_inactive.svg';
+  static const String timeActive = 'assets/svg/time_active.svg';
+  static const String timeDisActive = 'assets/svg/time_inactive.svg';
 }
