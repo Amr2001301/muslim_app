@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AppConst {
-  static const double kDefaultPadding = 24.0;
+  static const double kDefaultPadding = 20.0;
   static const double kMediumPadding = 16.0;
   static const double kSmallPadding = 8.0;
   static const double kBorderRadius = 16.0;

@@ -1,6 +1,6 @@
 {
     "search":"Search",
-    "suras_list":"Suras List",
+    "surah_list":"Surah List",
     "ayah":"Ayah",
     "next":"Next",
     "previous":"Previous",
@@ -19,5 +19,7 @@
     "hadith":"Hadith",
     "sebha":"Sebha",
     "radio":"Radio",
-    "time":"Time"
+    "time":"Time",
+    "sura_name":"Sura Name",
+    "verses":"Verses"
 }

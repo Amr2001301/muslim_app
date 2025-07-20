@@ -20,6 +20,7 @@ abstract class AppImages {
   static const String compass = 'assets/image/compass.png';
   static const String hadithCardBackGround =
       'assets/image/HadithCardBackGround 1.png';
+  static const String shadowBg = "assets/image/shadow_bg.png";
 
   // svg
   static const String facebook = 'assets/svg/facebook.svg';
