@@ -1,3 +1,3 @@
 abstract class ApiEndpiont {
-  static final String baseUrl = "https://api.example.com/";
+  static const String getAllSurah = "https://api.alquran.cloud/surah";
 }

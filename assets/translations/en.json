@@ -21,5 +21,6 @@
     "radio":"Radio",
     "time":"Time",
     "sura_name":"Sura Name",
-    "verses":"Verses"
+    "verses":"Verses",
+    "error":"Error accure please try again"
 }

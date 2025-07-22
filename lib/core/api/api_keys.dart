@@ -1,1 +1,3 @@
-abstract class ApiKeys {}
+abstract class ApiKeys {
+  static String suraBox = 'sura';
+}

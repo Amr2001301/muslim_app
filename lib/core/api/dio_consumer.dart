@@ -1,16 +1,18 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:muslim_app/core/api/api_consumer.dart';
-import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/errors/handel_dio_exception.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = ApiEndpiont.baseUrl;
-    dio.options.connectTimeout = const Duration(milliseconds: 300);
-    dio.options.receiveTimeout = const Duration(milliseconds: 300);
+    dio.options.connectTimeout = const Duration(seconds: 60);
+    dio.options.receiveTimeout = const Duration(seconds: 60);
+    dio.options.headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
@@ -31,11 +33,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
   }) async {
     try {
-      await dio.delete(
+      final response = await dio.delete(
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
+      return response.data;
     } on DioException catch (e) {
       handelDioException(e);
     } catch (e) {
@@ -51,11 +54,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
   }) async {
     try {
-      await dio.get(
+      final response = await dio.get(
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
+      return response.data;
     } on DioException catch (e) {
       handelDioException(e);
     } catch (e) {
@@ -71,11 +75,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
   }) async {
     try {
-      await dio.post(
+      final response = await dio.post(
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
+      return response.data;
     } on DioException catch (e) {
       handelDioException(e);
     } catch (e) {
@@ -91,11 +96,12 @@ class DioConsumer extends ApiConsumer {
     bool isFormData = false,
   }) async {
     try {
-      await dio.put(
+      final response = await dio.put(
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
+      return response.data;
     } on DioException catch (e) {
       handelDioException(e);
     } catch (e) {
