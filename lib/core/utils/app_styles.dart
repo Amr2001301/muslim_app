@@ -34,4 +34,8 @@ abstract class AppStyles {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle style18Regular = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
 }
