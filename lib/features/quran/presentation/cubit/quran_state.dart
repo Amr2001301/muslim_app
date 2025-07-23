@@ -20,3 +20,15 @@ final class GetAllSuraError extends QuranState {
   final String errMessage;
   const GetAllSuraError({required this.errMessage});
 }
+
+final class GetSuraByIndexLoading extends QuranState {}
+
+final class GetSuraByIndexSuccess extends QuranState {
+  final SuraDetailsEntity sura;
+  const GetSuraByIndexSuccess({required this.sura});
+}
+
+final class GetSuraByIndexError extends QuranState {
+  final String errMessage;
+  const GetSuraByIndexError({required this.errMessage});
+}

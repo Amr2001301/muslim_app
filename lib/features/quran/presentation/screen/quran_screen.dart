@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/widgets/custom_divdier.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
 import 'package:muslim_app/core/widgets/custom_search_bar.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
@@ -69,7 +70,8 @@ class QuranScreen extends StatelessWidget {
                                         state.suras[index].numberOfAyahs,
                                   ),
                                 ),
-                                separatorBuilder: (context, index) => Divider(),
+                                separatorBuilder: (context, index) =>
+                                    CustomDivider(),
                                 itemCount: state.suras.length,
                               ),
                             ),

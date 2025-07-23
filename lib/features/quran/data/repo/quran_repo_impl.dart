@@ -5,15 +5,22 @@ import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/errors/exception.dart';
+import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_model/sura_model.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 
 class QuranRepoImpl implements QuranRepo {
   final ApiConsumer api;
   final Box<SuraModel> suraBox;
+  final Box<SuraDetailsModel> suraDetailsBox;
 
-  QuranRepoImpl({required this.suraBox, required this.api});
+  QuranRepoImpl({
+    required this.suraDetailsBox,
+    required this.suraBox,
+    required this.api,
+  });
   @override
   Future<Either<String, List<SuraEntity>>> getAllSura() async {
     try {
@@ -35,6 +42,29 @@ class QuranRepoImpl implements QuranRepo {
         log('suraBox.isNotEmpty');
         return Right(suraBox.values.map((e) => e.toEntity()).toList());
       }
+      return Left('error'.tr());
+    }
+  }
+
+  @override
+  Future<Either<String, SuraDetailsEntity>> getSuraByIndex(int index) async {
+    try {
+      final response = await api.get(path: '${ApiEndpiont.getSurah}/$index');
+      SuraDetailsModel suraDetailsModel = SuraDetailsModel.fromJson(
+        response['data'],
+      );
+      suraDetailsBox.clear();
+      await suraDetailsBox.put(index, suraDetailsModel);
+      return Right(suraDetailsModel.toEntity());
+    } on ServerException catch (e) {
+      return Left(e.errorModel.error);
+    } catch (e, st) {
+      if (suraDetailsBox.isNotEmpty) {
+        final suraDetails = suraDetailsBox.get(index);
+        return Right(suraDetails?.toEntity());
+      }
+      log('getQuran ERROR: $e');
+      log('STACK: $st');
       return Left('error'.tr());
     }
   }

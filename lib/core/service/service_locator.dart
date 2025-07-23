@@ -16,6 +16,7 @@ abstract class ServiceLocator {
       QuranRepoImpl(
         suraBox: Hive.box(ApiKeys.suraBox),
         api: getIt<ApiConsumer>(),
+        suraDetailsBox: Hive.box(ApiKeys.suraDetailsBox),
       ),
     );
   }

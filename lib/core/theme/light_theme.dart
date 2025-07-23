@@ -11,7 +11,9 @@ ThemeData lightTheme() {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.scaffoldBgLightColor,
       centerTitle: true,
-      titleTextStyle: AppStyles.style16SemiBold,
+      titleTextStyle: AppStyles.style16SemiBold.copyWith(
+        color: AppColors.goldDarkColor,
+      ),
       elevation: 0,
       scrolledUnderElevation: 0,
       iconTheme: const IconThemeData(color: AppColors.goldDarkColor),

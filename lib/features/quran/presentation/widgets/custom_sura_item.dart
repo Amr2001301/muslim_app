@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +20,10 @@ class CustomSuraItem extends StatelessWidget {
     bool isArabic = context.watch<TranslationsBloc>().state.isArabic;
     return ListTile(
       onTap: () {
-        context.pushNamed(Routes.sura, arguments: suraEntity);
+        context.pushNamed(
+          Routes.sura,
+          arguments: {'suraEntity': suraEntity, 'index': suraEntity.number},
+        );
       },
       contentPadding: EdgeInsets.all(0),
       title: isArabic
