@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/errors/exception.dart';
+import 'package:muslim_app/core/utils/functions/remove_basmala.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_model/sura_model.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
@@ -21,9 +22,23 @@ class QuranRepoImpl implements QuranRepo {
     required this.suraBox,
     required this.api,
   });
+
   @override
   Future<Either<String, List<SuraEntity>>> getAllSura(String? name) async {
     try {
+      if (suraBox.isNotEmpty) {
+        List<SuraEntity> cachedList = suraBox.values
+            .map((e) => e.toEntity())
+            .toList();
+        List<SuraEntity> filterList = cachedList
+            .where(
+              (e) => removeDiacritics(
+                e.name.trim(),
+              ).contains(removeDiacritics(name ?? '')),
+            )
+            .toList();
+        return Right(filterList);
+      }
       final response = await api.get(path: ApiEndpiont.getAllSurah);
       final List<SuraModel> suraModel = (response['data'] as List)
           .map((e) => SuraModel.fromJson(e))
@@ -36,7 +51,11 @@ class QuranRepoImpl implements QuranRepo {
           .map((e) => e.toEntity())
           .toList();
       List<SuraEntity> filterList = suraListEntity
-          .where((e) => e.name.trim().contains(name ?? ''))
+          .where(
+            (e) => removeDiacritics(
+              e.name.trim(),
+            ).contains(removeDiacritics(name ?? '')),
+          )
           .toList();
       return Right(filterList);
     } on ServerException catch (e) {
