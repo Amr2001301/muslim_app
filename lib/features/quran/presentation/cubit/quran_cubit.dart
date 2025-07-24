@@ -3,11 +3,20 @@ import 'package:equatable/equatable.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
+import 'package:rxdart/rxdart.dart';
 part 'quran_state.dart';
 
 class QuranCubit extends Cubit<QuranState> {
   QuranCubit(this.quranRepo) : super(QuranInitial());
   final QuranRepo quranRepo;
+
+  BehaviorSubject<double> fontSized = BehaviorSubject<double>.seeded(18.0);
+
+  void changeFontSize(double value) {
+    fontSized.add(value);
+  }
+
+  ValueStream<double> get fontSizeStream => fontSized.stream;
 
   Future<void> getAllSura() async {
     emit(GetAllSuraLoading());

@@ -22,5 +22,8 @@
     "time":"Time",
     "sura_name":"Sura Name",
     "verses":"Verses",
-    "error":"Error accure please try again"
+    "error":"Error accure please try again",
+    "fontSize":"Font Size",
+    "soundPlay":"Sound Play",
+    "AutomaticAnimation":"Automatic Animation"
 }

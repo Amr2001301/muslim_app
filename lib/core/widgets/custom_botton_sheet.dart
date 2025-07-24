@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 
 class CustomBottonSheet extends StatelessWidget {
@@ -10,7 +12,22 @@ class CustomBottonSheet extends StatelessWidget {
       width: double.infinity,
       child: Padding(
         padding: EdgeInsets.all(AppConst.kDefaultPadding),
-        child: child,
+        child: IntrinsicHeight(
+          child: Column(
+            children: [
+              Container(
+                height: 5.h,
+                width: 120,
+                decoration: BoxDecoration(
+                  color: AppColors.blackColor,
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+              ),
+              verticalSpace(24),
+              child,
+            ],
+          ),
+        ),
       ),
     );
   }
