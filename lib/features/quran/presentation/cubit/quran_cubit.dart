@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
@@ -9,6 +10,8 @@ part 'quran_state.dart';
 class QuranCubit extends Cubit<QuranState> {
   QuranCubit(this.quranRepo) : super(QuranInitial());
   final QuranRepo quranRepo;
+
+  TextEditingController searchController = TextEditingController();
 
   BehaviorSubject<double> fontSized = BehaviorSubject<double>.seeded(18.0);
 
@@ -20,7 +23,7 @@ class QuranCubit extends Cubit<QuranState> {
 
   Future<void> getAllSura() async {
     emit(GetAllSuraLoading());
-    final result = await quranRepo.getAllSura();
+    final result = await quranRepo.getAllSura(searchController.text);
     result.fold(
       (l) => emit(GetAllSuraError(errMessage: l)),
       (r) => emit(GetAllSuraSuccess(suras: r)),

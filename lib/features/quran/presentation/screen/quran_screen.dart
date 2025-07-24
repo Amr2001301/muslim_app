@@ -45,8 +45,13 @@ class QuranScreen extends StatelessWidget {
                               child: Image.asset(AppImages.quranHomeLogo),
                             ),
                             CustomSearchBar(
-                              controller: TextEditingController(),
+                              controller: context
+                                  .read<QuranCubit>()
+                                  .searchController,
                               hintKey: 'sura_name'.tr(),
+                              onChanged: (p0) {
+                                context.read<QuranCubit>().getAllSura();
+                              },
                             ),
                             verticalSpace(20),
                             Align(

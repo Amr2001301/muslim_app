@@ -22,7 +22,7 @@ class QuranRepoImpl implements QuranRepo {
     required this.api,
   });
   @override
-  Future<Either<String, List<SuraEntity>>> getAllSura() async {
+  Future<Either<String, List<SuraEntity>>> getAllSura(String? name) async {
     try {
       final response = await api.get(path: ApiEndpiont.getAllSurah);
       final List<SuraModel> suraModel = (response['data'] as List)
@@ -32,7 +32,13 @@ class QuranRepoImpl implements QuranRepo {
       for (var element in suraModel) {
         await suraBox.add(element);
       }
-      return Right(suraModel.map((e) => e.toEntity()).toList());
+      List<SuraEntity> suraListEntity = suraModel
+          .map((e) => e.toEntity())
+          .toList();
+      List<SuraEntity> filterList = suraListEntity
+          .where((e) => e.name.trim().contains(name ?? ''))
+          .toList();
+      return Right(filterList);
     } on ServerException catch (e) {
       return Left(e.errorModel.error);
     } catch (e, st) {
