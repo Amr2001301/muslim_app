@@ -15,7 +15,7 @@ class CustomBottomSheetBotton extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Column(
         children: [
