@@ -5,7 +5,7 @@ import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/utils/functions/remove_basmala.dart';
 import 'package:muslim_app/features/quran/domain/entity/ayah_entity.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 
 class CustomSuraPage extends StatelessWidget {
   final int pageNumber;

@@ -7,7 +7,7 @@ import 'package:muslim_app/features/onboarding/presentation/cubit/onboarding_cub
 import 'package:muslim_app/features/onboarding/presentation/screen/onbaording_screen.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/screen/sura_details_screen.dart';
 
 abstract class OngenerateRoutes {

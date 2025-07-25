@@ -8,7 +8,7 @@ import 'package:muslim_app/core/widgets/custom_divdier.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
 import 'package:muslim_app/core/widgets/custom_search_bar.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/widgets/custom_sura_item.dart';
 
 class QuranScreen extends StatelessWidget {

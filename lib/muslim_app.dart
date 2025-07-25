@@ -10,7 +10,7 @@ import 'package:muslim_app/core/theme/dark_theme.dart';
 import 'package:muslim_app/core/theme/light_theme.dart';
 import 'package:muslim_app/core/translations/bloc/translations_bloc.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 
 class MuslimApp extends StatelessWidget {
   const MuslimApp({super.key});

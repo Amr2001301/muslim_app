@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 
 class CustomFontSizeSlider extends StatelessWidget {
   const CustomFontSizeSlider({super.key});
