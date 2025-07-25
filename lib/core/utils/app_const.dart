@@ -7,6 +7,7 @@ abstract class AppConst {
   static const double kSmallPadding = 8.0;
   static const double kBorderRadius = 16.0;
   static const double kSmalBorderRadius = 10.0;
+  static const String kfontSized = "font_size";
 }
 
 SizedBox verticalSpace(double height) {

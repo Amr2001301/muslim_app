@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:muslim_app/core/service/shared_prefs_service.dart';
+import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
-import 'package:rxdart/rxdart.dart';
 part 'quran_state.dart';
 
 class QuranCubit extends Cubit<QuranState> {
@@ -12,15 +15,7 @@ class QuranCubit extends Cubit<QuranState> {
   final QuranRepo quranRepo;
 
   TextEditingController searchController = TextEditingController();
-
-  BehaviorSubject<double> fontSized = BehaviorSubject<double>.seeded(18.0);
-
-  void changeFontSize(double value) {
-    fontSized.add(value);
-  }
-
-  ValueStream<double> get fontSizeStream => fontSized.stream;
-
+  double fontSize = 20.0;
   Future<void> getAllSura() async {
     emit(GetAllSuraLoading());
     final result = await quranRepo.getAllSura(searchController.text);
@@ -37,5 +32,12 @@ class QuranCubit extends Cubit<QuranState> {
       (l) => emit(GetSuraByIndexError(errMessage: l)),
       (r) => emit(GetSuraByIndexSuccess(sura: r)),
     );
+  }
+
+  void changeFontSized(double fontSized) async {
+    fontSize = fontSized;
+    await SharedPrefsService.setData(AppConst.kfontSized, fontSized);
+    emit(ChangeFontSize(fontSize: fontSized));
+    log('fontSize: $fontSize');
   }
 }

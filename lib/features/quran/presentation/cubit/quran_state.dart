@@ -32,3 +32,8 @@ final class GetSuraByIndexError extends QuranState {
   final String errMessage;
   const GetSuraByIndexError({required this.errMessage});
 }
+
+final class ChangeFontSize extends QuranState {
+  final double fontSize;
+  const ChangeFontSize({required this.fontSize});
+}

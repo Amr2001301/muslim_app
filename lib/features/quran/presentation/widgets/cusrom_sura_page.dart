@@ -15,51 +15,51 @@ class CustomSuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<QuranCubit, QuranState>(
       builder: (context, state) {
-        if (state is GetSuraByIndexSuccess) {
-          List<AyahEntity> ayahs = state.sura.ayahs!
-              .where((e) => e.page == pageNumber)
-              .toList();
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(AppConst.kDefaultPadding),
-                child: Text.rich(
-                  TextSpan(
-                    children: ayahs.map((ayah) {
-                      return TextSpan(
-                        children: [
-                          TextSpan(
-                            text: removeBasmalah(ayah.text!),
-                            style: AppStyles.style18Regular,
-                          ),
-                          TextSpan(
-                            text: " ﴿${ayah.numberInSurah}﴾ ",
-                            style: AppStyles.style16SemiBold.copyWith(
-                              color: AppColors.goldDarkColor,
+        double fontSize = context.read<QuranCubit>().fontSize;
+        if (state is ChangeFontSize || state is GetSuraByIndexSuccess) {
+          if (state is GetSuraByIndexSuccess) {
+            List<AyahEntity> ayahs = state.sura.ayahs!
+                .where((e) => e.page == pageNumber)
+                .toList();
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(AppConst.kDefaultPadding),
+                  child: Text.rich(
+                    TextSpan(
+                      children: ayahs.map((ayah) {
+                        return TextSpan(
+                          children: [
+                            TextSpan(
+                              text: removeBasmalah(ayah.text!),
+                              style: AppStyles.style18Regular.copyWith(
+                                fontSize: fontSize,
+                              ),
                             ),
-                          ),
-                        ],
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          height: 2,
-                        ),
-                      );
-                    }).toList(),
+                            TextSpan(
+                              text: " ﴿${ayah.numberInSurah}﴾ ",
+                              style: AppStyles.style16SemiBold.copyWith(
+                                color: AppColors.goldDarkColor,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                    textAlign: TextAlign.justify,
                   ),
-                  textAlign: TextAlign.justify,
                 ),
-              ),
-              Center(
-                child: Text("$pageNumber", style: AppStyles.style13SemiBold),
-              ),
-              const Divider(height: 32, thickness: 4, color: Colors.black),
-            ],
-          );
-        } else {
-          return const SizedBox.shrink();
+                Center(
+                  child: Text("$pageNumber", style: AppStyles.style13SemiBold),
+                ),
+                const Divider(height: 32, thickness: 4, color: Colors.black),
+              ],
+            );
+          }
         }
+        return const SizedBox.shrink();
       },
     );
   }

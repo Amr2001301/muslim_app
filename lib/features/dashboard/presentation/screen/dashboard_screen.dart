@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/features/dashboard/presentation/widgets/custom_nav_bar.dart';
-import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
-import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/screen/quran_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -18,12 +14,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   late PersistentTabController _controller;
   List<CustomNavBarScreen> screens = [
-    CustomNavBarScreen(
-      screen: BlocProvider(
-        create: (context) => QuranCubit(getIt<QuranRepo>())..getAllSura(),
-        child: QuranScreen(),
-      ),
-    ),
+    CustomNavBarScreen(screen: QuranScreen()),
     CustomNavBarScreen(screen: SizedBox()),
     CustomNavBarScreen(screen: SizedBox()),
     CustomNavBarScreen(screen: SizedBox()),

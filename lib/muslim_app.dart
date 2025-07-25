@@ -4,10 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muslim_app/core/routes/ongenerate_routes.dart';
 import 'package:muslim_app/core/routes/routes.dart';
+import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/core/theme/bloc/theme_bloc.dart';
 import 'package:muslim_app/core/theme/dark_theme.dart';
 import 'package:muslim_app/core/theme/light_theme.dart';
 import 'package:muslim_app/core/translations/bloc/translations_bloc.dart';
+import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
+import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
 
 class MuslimApp extends StatelessWidget {
   const MuslimApp({super.key});
@@ -18,6 +21,9 @@ class MuslimApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ThemeBloc()),
         BlocProvider(create: (context) => TranslationsBloc()),
+        BlocProvider(
+          create: (context) => QuranCubit(getIt<QuranRepo>())..getAllSura(),
+        ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {

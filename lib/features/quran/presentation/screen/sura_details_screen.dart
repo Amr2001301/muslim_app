@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/widgets/custom_botton_sheet.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/widgets/cusrom_sura_page.dart';
 import 'package:muslim_app/features/quran/presentation/widgets/custom_bottom_sheet_botton.dart';
+import 'package:muslim_app/features/quran/presentation/widgets/custom_font_size_slider.dart';
 
 class SuraDetailsScreen extends StatelessWidget {
   const SuraDetailsScreen({super.key, required this.suraEntity});
@@ -23,7 +25,13 @@ class SuraDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomBottomSheetBotton(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) =>
+                      CustomBottonSheet(child: CustomFontSizeSlider()),
+                );
+              },
               title: 'fontSize',
               icon: Icons.font_download,
             ),
