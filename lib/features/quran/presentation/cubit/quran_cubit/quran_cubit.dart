@@ -13,7 +13,7 @@ part 'quran_state.dart';
 class QuranCubit extends Cubit<QuranState> {
   QuranCubit(this.quranRepo) : super(QuranInitial());
   final QuranRepo quranRepo;
-
+  List<int> pages = [];
   TextEditingController searchController = TextEditingController();
   double fontSize = 20.0;
   Future<void> getAllSura() async {

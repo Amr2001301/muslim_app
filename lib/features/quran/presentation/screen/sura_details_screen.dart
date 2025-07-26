@@ -15,6 +15,7 @@ class SuraDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<int?> pages = context.read<QuranCubit>().pages;
     return BlocProvider(
       create: (context) => SettingCubit(),
       child: Scaffold(
@@ -26,7 +27,7 @@ class SuraDetailsScreen extends StatelessWidget {
 
             if (state is AutomaticAnimationState) {
               return context.read<SettingCubit>().isVisiblBottomSheet
-                  ? CustomBottomSheetSetting()
+                  ? CustomBottomSheetSetting(numPages: pages.length)
                   : SizedBox.shrink();
             } else {
               return CustomBottomSheetSetting();
@@ -38,7 +39,7 @@ class SuraDetailsScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is GetSuraByIndexSuccess) {
               final ayahs = state.sura.ayahs ?? [];
-              final pages = ayahs.map((e) => e.page).toSet().toList()..sort();
+              pages = ayahs.map((e) => e.page).toSet().toList()..sort();
               return SingleChildScrollView(
                 controller: context.read<SettingCubit>().scrollController,
                 child: Column(

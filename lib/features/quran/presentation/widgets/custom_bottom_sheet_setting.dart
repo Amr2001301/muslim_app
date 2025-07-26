@@ -7,8 +7,8 @@ import 'package:muslim_app/features/quran/presentation/widgets/custom_bottom_she
 import 'package:muslim_app/features/quran/presentation/widgets/custom_font_size_slider.dart';
 
 class CustomBottomSheetSetting extends StatelessWidget {
-  const CustomBottomSheetSetting({super.key});
-
+  const CustomBottomSheetSetting({super.key, this.numPages});
+  final int? numPages;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +31,7 @@ class CustomBottomSheetSetting extends StatelessWidget {
           ),
           CustomBottomSheetBotton(
             onTap: () {
-              context.read<SettingCubit>().startAnimatioScroll(50);
+              context.read<SettingCubit>().startAnimatioScroll(numPages ?? 20);
             },
             title: 'AutomaticAnimation',
             icon: Icons.keyboard_double_arrow_down_rounded,

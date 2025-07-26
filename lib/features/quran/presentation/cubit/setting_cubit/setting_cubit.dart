@@ -26,7 +26,7 @@ class SettingCubit extends Cubit<SettingState> {
       emit(AutomaticAnimationState(isAutomaticAnimation: false));
     }
     timer?.cancel();
-    timer = Timer(const Duration(milliseconds: 300), () {
+    timer = Timer(const Duration(milliseconds: 200), () {
       isVisiblBottomSheet = true;
       emit(AutomaticAnimationState(isAutomaticAnimation: true));
     });
