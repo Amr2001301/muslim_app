@@ -6,18 +6,22 @@ import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/errors/exception.dart';
 import 'package:muslim_app/core/utils/functions/remove_basmala.dart';
+import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_model/sura_model.dart';
-import 'package:muslim_app/features/quran/domain/entity/sura_details_entity.dart';
-import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_audio_entity/audio_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/sura_details_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 
 class QuranRepoImpl implements QuranRepo {
   final ApiConsumer api;
   final Box<SuraModel> suraBox;
   final Box<SuraDetailsModel> suraDetailsBox;
+  final Box<AudioModel> audioBox;
 
   QuranRepoImpl({
+    required this.audioBox,
     required this.suraDetailsBox,
     required this.suraBox,
     required this.api,
@@ -90,6 +94,25 @@ class QuranRepoImpl implements QuranRepo {
       }
       log('getQuran ERROR: $e');
       log('STACK: $st');
+      return Left('error'.tr());
+    }
+  }
+
+  @override
+  Future<Either<String, AudioEntity>> getSuraAudio(int index) async {
+    try {
+      final response = await api.get(
+        path: '${ApiEndpiont.getSurahAudio}/$index.json',
+      );
+      AudioModel audioModel = AudioModel.fromJson(response['audio']);
+      audioBox.clear();
+      audioBox.put(index, audioModel);
+      return Right(audioModel.toEntity());
+    } on ServerException catch (e) {
+      log('getSuraAudio ERROR: $e');
+      return Left(e.errorModel.error);
+    } catch (e) {
+      log('getSuraAudio ERROR: $e');
       return Left('error'.tr());
     }
   }

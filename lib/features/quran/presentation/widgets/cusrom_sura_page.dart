@@ -4,7 +4,7 @@ import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/utils/functions/remove_basmala.dart';
-import 'package:muslim_app/features/quran/domain/entity/ayah_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/ayah_entity.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 
 class CustomSuraPage extends StatelessWidget {
@@ -14,6 +14,11 @@ class CustomSuraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuranCubit, QuranState>(
+      buildWhen: (previous, current) =>
+          current is GetSuraByIndexSuccess ||
+          current is ChangeFontSize ||
+          current is GetSuraByIndexLoading ||
+          current is GetSuraByIndexError,
       builder: (context, state) {
         double fontSize = context.read<QuranCubit>().fontSize;
         if (state is ChangeFontSize || state is GetSuraByIndexSuccess) {

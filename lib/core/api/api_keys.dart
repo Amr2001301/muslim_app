@@ -3,4 +3,5 @@ abstract class ApiKeys {
   static String ayahBox = 'ayahBox';
   static String editionBox = 'editionBox';
   static String suraDetailsBox = 'suraDetailsBox';
+  static String audioBox = 'audioBox';
 }

@@ -33,6 +33,19 @@ final class GetSuraByIndexError extends QuranState {
   const GetSuraByIndexError({required this.errMessage});
 }
 
+final class GetSuraAudioLoading extends QuranState {}
+
+final class GetSuraAudioSuccess extends QuranState {
+  final AudioEntity suraAudio;
+
+  const GetSuraAudioSuccess({required this.suraAudio});
+}
+
+final class GetSuraAudioError extends QuranState {
+  final String errMessage;
+  const GetSuraAudioError({required this.errMessage});
+}
+
 final class ChangeFontSize extends QuranState {
   final double fontSize;
   const ChangeFontSize({required this.fontSize});

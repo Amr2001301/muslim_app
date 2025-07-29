@@ -1,9 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
-import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/setting_cubit/setting_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/widgets/cusrom_sura_page.dart';
@@ -21,21 +20,25 @@ class SuraDetailsScreen extends StatelessWidget {
       child: Scaffold(
         bottomSheet: BlocBuilder<SettingCubit, SettingState>(
           builder: (context, state) {
-            log(
-              'isVisiblBottomSheet: ${context.read<SettingCubit>().isVisiblBottomSheet}',
-            );
-
             if (state is AutomaticAnimationState) {
               return context.read<SettingCubit>().isVisiblBottomSheet
-                  ? CustomBottomSheetSetting(numPages: pages.length)
+                  ? CustomBottomSheetSetting(
+                      numPages: pages.length,
+                      surahIndex: suraEntity.number,
+                    )
                   : SizedBox.shrink();
             } else {
-              return CustomBottomSheetSetting();
+              return CustomBottomSheetSetting(surahIndex: suraEntity.number);
             }
           },
         ),
         appBar: AppBar(title: Text(suraEntity.name)),
         body: BlocBuilder<QuranCubit, QuranState>(
+          buildWhen: (previous, current) =>
+              current is GetSuraByIndexSuccess ||
+              current is GetSuraByIndexLoading ||
+              current is GetSuraByIndexError,
+
           builder: (context, state) {
             if (state is GetSuraByIndexSuccess) {
               final ayahs = state.sura.ayahs ?? [];

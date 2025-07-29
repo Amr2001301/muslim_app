@@ -5,7 +5,7 @@ import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/features/dashboard/presentation/screen/dashboard_screen.dart';
 import 'package:muslim_app/features/onboarding/presentation/cubit/onboarding_cubit.dart';
 import 'package:muslim_app/features/onboarding/presentation/screen/onbaording_screen.dart';
-import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/screen/sura_details_screen.dart';

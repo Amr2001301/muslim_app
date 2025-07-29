@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/quran/domain/entity/ayah_entity.dart';
-import 'package:muslim_app/features/quran/domain/entity/edition_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/ayah_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/edition_entity.dart';
 
 class SuraDetailsEntity extends Equatable {
   final int? number;

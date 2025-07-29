@@ -17,6 +17,7 @@ abstract class ServiceLocator {
         suraBox: Hive.box(ApiKeys.suraBox),
         api: getIt<ApiConsumer>(),
         suraDetailsBox: Hive.box(ApiKeys.suraDetailsBox),
+        audioBox: Hive.box(ApiKeys.audioBox),
       ),
     );
   }

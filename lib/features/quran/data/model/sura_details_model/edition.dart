@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
-import 'package:muslim_app/features/quran/domain/entity/edition_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/edition_entity.dart';
 
 part 'edition.g.dart';
 

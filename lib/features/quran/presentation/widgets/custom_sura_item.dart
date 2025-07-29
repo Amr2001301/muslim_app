@@ -7,7 +7,7 @@ import 'package:muslim_app/core/translations/bloc/translations_bloc.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
-import 'package:muslim_app/features/quran/domain/entity/sura_entity.dart';
+import 'package:muslim_app/features/quran/domain/entity/sura_entity/sura_entity.dart';
 
 class CustomSuraItem extends StatelessWidget {
   const CustomSuraItem({super.key, required this.suraEntity});

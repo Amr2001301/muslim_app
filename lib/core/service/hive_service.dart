@@ -1,5 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_keys.dart';
+import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_details_model.dart';
+import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/ayah.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/edition.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
@@ -19,10 +21,13 @@ abstract class HiveService {
     Hive.registerAdapter(AyahModelAdapter());
     Hive.registerAdapter(EditionModelAdapter());
     Hive.registerAdapter(SuraDetailsModelAdapter());
+    Hive.registerAdapter(AudioDetailsModelAdapter());
+    Hive.registerAdapter(AudioModelAdapter());
   }
 
   static Future<void> initBox() async {
     await Hive.openBox<SuraModel>(ApiKeys.suraBox);
     await Hive.openBox<SuraDetailsModel>(ApiKeys.suraDetailsBox);
+    await Hive.openBox<AudioModel>(ApiKeys.audioBox);
   }
 }
