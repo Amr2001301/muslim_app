@@ -10,11 +10,11 @@ class AudioService {
   AudioPlayer? _player;
 
   Future<void> init() async {
-    _player ??= AudioPlayer(); // يتم التهيئة فقط بعد التأكد
+    _player ??= AudioPlayer();
   }
 
   Future<void> play(String url) async {
-    await init(); // تأكد من التهيئة
+    await init();
     await _player!.play(UrlSource(url));
   }
 
@@ -32,6 +32,14 @@ class AudioService {
 
   Future<void> seek(Duration position) async {
     await _player?.seek(position);
+  }
+
+  Future<void> setVolume(double volume) async {
+    await _player?.setVolume(volume);
+  }
+
+  Future<void> setSpeed(double speed) async {
+    await _player?.setPlaybackRate(speed);
   }
 
   Future<void> dispose() async {

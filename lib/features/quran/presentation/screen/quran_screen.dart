@@ -24,6 +24,11 @@ class QuranScreen extends StatelessWidget {
             Image.asset(AppImages.quranBg, fit: BoxFit.cover),
             Image.asset(AppImages.shadowBg, fit: BoxFit.cover),
             BlocConsumer<QuranCubit, QuranState>(
+              buildWhen: (previous, current) {
+                return current is GetAllSuraSuccess ||
+                    current is GetAllSuraLoading ||
+                    current is GetAllSuraError;
+              },
               listener: (context, state) {},
               builder: (context, state) {
                 if (state is GetAllSuraLoading) {

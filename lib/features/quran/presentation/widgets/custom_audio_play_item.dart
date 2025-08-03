@@ -21,6 +21,8 @@ class CustomAudioPlayItem extends StatefulWidget {
 
 class _CustomAudioPlayItemState extends State<CustomAudioPlayItem> {
   int initialValue = 1;
+  bool isVolume = true;
+  double speed = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,13 @@ class _CustomAudioPlayItemState extends State<CustomAudioPlayItem> {
       child: Column(
         children: [
           DropdownMenu(
-            initialSelection: 1,
+            initialSelection: 0,
             onSelected: (value) {
               setState(() {
                 initialValue = value!;
                 log(widget.audios[value].reciter!);
               });
+              audioService.stop();
             },
             dropdownMenuEntries: List.generate(
               widget.audios.length,
@@ -55,12 +58,33 @@ class _CustomAudioPlayItemState extends State<CustomAudioPlayItem> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  horizontalSpace(5),
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.volume_up_rounded),
+                    onPressed: () async {
+                      if (isVolume) {
+                        await audioService.setVolume(0);
+                        isVolume = false;
+                        setState(() {});
+                      } else {
+                        await audioService.setVolume(1);
+                        isVolume = true;
+                        setState(() {});
+                      }
+                    },
+                    icon: Icon(
+                      isVolume
+                          ? Icons.volume_up_rounded
+                          : Icons.volume_off_rounded,
+                    ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final currentPosition =
+                          await audioService.onPositionChanged!.first;
+                      final newPosition =
+                          currentPosition - const Duration(seconds: 10);
+                      await audioService.seek(newPosition);
+                    },
                     icon: const Icon(Icons.skip_next_rounded),
                   ),
                   horizontalSpace(5),
@@ -92,26 +116,60 @@ class _CustomAudioPlayItemState extends State<CustomAudioPlayItem> {
                   ),
                   horizontalSpace(5),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final currentPosition =
+                          await audioService.onPositionChanged!.first;
+                      final newPosition =
+                          currentPosition + const Duration(seconds: 10);
+                      await audioService.seek(newPosition);
+                    },
                     icon: const Icon(Icons.skip_previous_rounded),
                   ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.speed)),
+                  IconButton(
+                    onPressed: () async {
+                      if (speed == 1) {
+                        await audioService.setSpeed(1.5);
+                        setState(() {
+                          speed = 1.5;
+                        });
+                      } else if (speed == 1.5) {
+                        await audioService.setSpeed(2);
+                        setState(() {
+                          speed = 2;
+                        });
+                      } else if (speed == 2) {
+                        await audioService.setSpeed(0.5);
+                        setState(() {
+                          speed = 0.5;
+                        });
+                      } else if (speed == 0.5) {
+                        await audioService.setSpeed(1);
+                        setState(() {
+                          speed = 1;
+                        });
+                      }
+                    },
+                    icon: Row(
+                      children: [
+                        const Icon(Icons.speed),
+                        horizontalSpace(5),
+                        Text('$speed'),
+                      ],
+                    ),
+                  ),
                 ],
               );
             },
           ),
-
           StreamBuilder<Duration>(
             stream: audioService.onPositionChanged ?? const Stream.empty(),
             builder: (context, positionSnapshot) {
               return StreamBuilder<Duration>(
                 stream: audioService.onDurationChanged ?? const Stream.empty(),
-
                 builder: (context, durationSnapshot) {
                   final position = positionSnapshot.data ?? Duration.zero;
                   final total =
                       durationSnapshot.data ?? const Duration(seconds: 1);
-
                   return Column(
                     children: [
                       Slider(
