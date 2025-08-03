@@ -36,8 +36,7 @@ final class GetSuraByIndexError extends QuranState {
 final class GetSuraAudioLoading extends QuranState {}
 
 final class GetSuraAudioSuccess extends QuranState {
-  final AudioEntity suraAudio;
-
+  final List<AudioDetialsEntity> suraAudio;
   const GetSuraAudioSuccess({required this.suraAudio});
 }
 

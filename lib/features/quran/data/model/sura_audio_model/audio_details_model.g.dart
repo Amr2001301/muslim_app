@@ -8,7 +8,7 @@ part of 'audio_details_model.dart';
 
 class AudioDetailsModelAdapter extends TypeAdapter<AudioDetailsModel> {
   @override
-  final int typeId = 5;
+  final int typeId = 7;
 
   @override
   AudioDetailsModel read(BinaryReader reader) {

@@ -28,6 +28,10 @@ abstract class HiveService {
   static Future<void> initBox() async {
     await Hive.openBox<SuraModel>(ApiKeys.suraBox);
     await Hive.openBox<SuraDetailsModel>(ApiKeys.suraDetailsBox);
-    await Hive.openBox<AudioModel>(ApiKeys.audioBox);
+    await Hive.openBox<AudioDetailsModel>(ApiKeys.audioBox);
+  }
+
+  static Future<void> clearAll() async {
+    await Hive.deleteFromDisk(); // احذر! يمسح كل البيانات
   }
 }

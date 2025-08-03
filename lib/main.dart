@@ -13,6 +13,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await HiveService.initHive();
   await SharedPrefsService.init();
+
   Bloc.observer = MyBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory(

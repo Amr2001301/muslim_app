@@ -4,7 +4,7 @@ import 'package:muslim_app/features/quran/domain/entity/sura_audio_entity/audio_
 
 part 'audio_details_model.g.dart';
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 7)
 class AudioDetailsModel extends Equatable {
   @HiveField(0)
   final String? reciter;
