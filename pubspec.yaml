@@ -6,6 +6,7 @@ version: 1.0.0+1
 environment:
   sdk: ^3.8.1
 dependencies:
+  audioplayers: ^6.5.0
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.1.1

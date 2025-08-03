@@ -25,7 +25,12 @@ class _SoundAudioBottomSheetState extends State<SoundAudioBottomSheet> {
         if (state is GetSuraAudioSuccess) {
           return Column(
             mainAxisSize: MainAxisSize.min,
-            children: [CustomAudioPlayItem(audios: state.suraAudio)],
+            children: [
+              CustomAudioPlayItem(
+                audios: state.suraAudio,
+                suraIndex: widget.surahIndex,
+              ),
+            ],
           );
         } else if (state is GetSuraAudioLoading) {
           return SizedBox(height: 100, child: CustomLoadingApp());
