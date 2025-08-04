@@ -4,6 +4,9 @@ import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_keys.dart';
 import 'package:muslim_app/core/api/dio_consumer.dart';
+import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_details_model.dart';
+import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
+import 'package:muslim_app/features/quran/data/model/sura_model/sura_model.dart';
 import 'package:muslim_app/features/quran/data/repo/quran_repo_impl.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 
@@ -14,10 +17,10 @@ abstract class ServiceLocator {
     getIt.registerSingleton<ApiConsumer>(DioConsumer(dio: Dio()));
     getIt.registerSingleton<QuranRepo>(
       QuranRepoImpl(
-        suraBox: Hive.box(ApiKeys.suraBox),
+        suraBox: Hive.box<SuraModel>(ApiKeys.suraBox),
         api: getIt<ApiConsumer>(),
-        suraDetailsBox: Hive.box(ApiKeys.suraDetailsBox),
-        audioBox: Hive.box(ApiKeys.audioBox),
+        suraDetailsBox: Hive.box<SuraDetailsModel>(ApiKeys.suraDetailsBox),
+        audioBox: Hive.box<AudioDetailsModel>(ApiKeys.audioBox),
       ),
     );
   }

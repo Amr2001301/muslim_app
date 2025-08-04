@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_detail_entity/sura_details_entity.dart';
 import 'ayah.dart';
 import 'edition.dart';
-
 part 'sura_details_model.g.dart';
 
 @HiveType(typeId: 4)

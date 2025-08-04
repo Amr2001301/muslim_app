@@ -83,8 +83,8 @@ class QuranRepoImpl implements QuranRepo {
       SuraDetailsModel suraDetailsModel = SuraDetailsModel.fromJson(
         response['data'],
       );
-      suraDetailsBox.clear();
       await suraDetailsBox.put(index, suraDetailsModel);
+      log(suraDetailsBox.values.toString());
       return Right(suraDetailsModel.toEntity());
     } on ServerException catch (e) {
       return Left(e.errorModel.error);
@@ -116,10 +116,10 @@ class QuranRepoImpl implements QuranRepo {
         audioModel.audioDetailsModel5!,
       ];
 
-      audioBox.clear();
       for (var element in audioDetialsModelList) {
         await audioBox.add(element);
       }
+      log(audioBox.values.toString());
       List<AudioDetialsEntity> audioDetialsEntityList = audioDetialsModelList
           .map((e) => e.toEntity())
           .toList();
