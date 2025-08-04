@@ -7,6 +7,7 @@ import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/api_keys.dart';
 import 'package:muslim_app/core/api/errors/exception.dart';
+import 'package:muslim_app/core/utils/functions/remove_basmala.dart';
 import 'package:muslim_app/features/hadith/data/model/hadith_model/hadith_model.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_repo.dart';
 import 'package:muslim_app/features/hadith/domain/entity/hadith_entity.dart';
@@ -17,8 +18,22 @@ class HadithRepoImpl extends HadithRepo {
 
   HadithRepoImpl({required this.api, required this.hadithBox});
   @override
-  Future<Either<String, List<HadithEntity>>> getAllHadith() async {
+  Future<Either<String, List<HadithEntity>>> getAllHadith(String? name) async {
     try {
+      if (hadithBox.isNotEmpty) {
+        List<HadithEntity> cashedList = hadithBox.values
+            .map((e) => e.toEntity())
+            .toList();
+        List<HadithEntity> filterList = cashedList
+            .where(
+              (e) => removeDiacritics(
+                e.chapterArabic!,
+              ).contains(removeDiacritics(name ?? '')),
+            )
+            .toList();
+        return right(filterList);
+      }
+
       final response = await api.get(
         path: ApiEndpiont.getAllHadith,
         queryParameters: {'apiKey': ApiKeys.hadithAPIKey},
@@ -26,14 +41,21 @@ class HadithRepoImpl extends HadithRepo {
       List<HadithModel> hadithModelList = (response['chapters'] as List)
           .map((e) => HadithModel.fromJson(e))
           .toList();
+      hadithBox.clear();
       for (var element in hadithModelList) {
         hadithBox.add(element);
       }
+      log(hadithBox.values.toString());
       List<HadithEntity> hadithEntityList = hadithModelList
           .map((e) => e.toEntity())
           .toList();
       return Right(hadithEntityList);
     } on ServerException catch (e) {
+      log('getAllHadith ServerException: $e');
+      return Left(e.errorModel.error);
+    } catch (e, st) {
+      log('getQuran ERROR: $e');
+      log('STACK: $st');
       if (hadithBox.isNotEmpty) {
         List<HadithEntity> hadithEntityList = hadithBox.values
             .toList()
@@ -41,10 +63,6 @@ class HadithRepoImpl extends HadithRepo {
             .toList();
         return Right(hadithEntityList);
       }
-      log('getAllHadith ServerException: $e');
-      return Left(e.errorModel.error);
-    } catch (e) {
-      log('getAllHadith ERROR: $e');
       return Left('error'.tr());
     }
   }

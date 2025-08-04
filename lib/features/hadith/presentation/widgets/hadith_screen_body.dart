@@ -28,6 +28,7 @@ class HadithScreenBody extends StatelessWidget {
             BlocConsumer<HadithCubit, HadithState>(
               listener: (context, state) {},
               builder: (context, state) {
+                var cubit = context.read<HadithCubit>();
                 if (state is GetAllHadithSuccess) {
                   return LayoutBuilder(
                     builder: (BuildContext context, BoxConstraints consrains) {
@@ -46,9 +47,11 @@ class HadithScreenBody extends StatelessWidget {
                               child: Image.asset(AppImages.quranHomeLogo),
                             ),
                             CustomSearchBar(
-                              controller: TextEditingController(),
+                              controller: cubit.hadithController,
                               hintKey: 'hadith_name'.tr(),
-                              onChanged: (val) {},
+                              onChanged: (val) {
+                                cubit.getAllHadith();
+                              },
                               prefixIcon: AppImages.hadithActive,
                             ),
                             verticalSpace(20),
@@ -65,6 +68,7 @@ class HadithScreenBody extends StatelessWidget {
                                 itemCount: state.hadiths.length,
                               ),
                             ),
+                            verticalSpace(40),
                           ],
                         ),
                       );
