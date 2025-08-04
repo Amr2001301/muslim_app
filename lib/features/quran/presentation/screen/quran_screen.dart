@@ -57,6 +57,7 @@ class QuranScreen extends StatelessWidget {
                               onChanged: (p0) {
                                 context.read<QuranCubit>().getAllSura();
                               },
+                              prefixIcon: AppImages.quranBoldIcon,
                             ),
                             verticalSpace(20),
                             Align(

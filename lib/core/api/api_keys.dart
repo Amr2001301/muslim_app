@@ -4,4 +4,7 @@ abstract class ApiKeys {
   static String editionBox = 'editionBox';
   static String suraDetailsBox = 'suraDetailsBox';
   static String audioBox = 'audioBox';
+  static String hadithBox = 'hadithBox';
+  static String hadithAPIKey =
+      r"$2y$10$rqkU6con7A0fMaP6ZGx6ne9h24nlCga7PCUyyAHLgBzV9NVsAUs";
 }

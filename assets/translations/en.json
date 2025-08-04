@@ -25,5 +25,6 @@
     "error":"Error accure please try again",
     "fontSize":"Font Size",
     "soundPlay":"Sound Play",
-    "AutomaticAnimation":"Automatic Animation"
+    "AutomaticAnimation":"Automatic Animation",
+    "hadith_name":"Hadith Name"
 }

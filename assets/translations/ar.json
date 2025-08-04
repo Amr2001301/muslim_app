@@ -25,5 +25,6 @@
     "error":"حدث خطأ يرجى المحاولة مرة أخرى",
     "fontSize":"حجم الخط",
     "soundPlay":"تشغيل الصوت",
-    "AutomaticAnimation":"التحريك التلقائي"
+    "AutomaticAnimation":"التحريك التلقائي" ,
+    "hadith_name":"اسم الحديث"
 }

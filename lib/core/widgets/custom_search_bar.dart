@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muslim_app/core/utils/app_images.dart';
+import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/widgets/custom_text_field.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -10,11 +10,13 @@ class CustomSearchBar extends StatelessWidget {
     required this.controller,
     this.onChanged,
     this.onSubmitted,
+    required this.prefixIcon,
   });
   final String? hintKey;
   final TextEditingController controller;
   final void Function(String)? onChanged;
   final Function(String)? onSubmitted;
+  final String prefixIcon;
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
@@ -24,7 +26,8 @@ class CustomSearchBar extends StatelessWidget {
       controller: controller,
       prefixIcon: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: SvgPicture.asset(AppImages.quranBoldIcon),
+        // ignore: deprecated_member_use
+        child: SvgPicture.asset(prefixIcon, color: AppColors.iconDarkColor),
       ),
     );
   }
