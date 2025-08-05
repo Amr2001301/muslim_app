@@ -31,7 +31,7 @@ abstract class ServiceLocator {
       HadithRepoImpl(
         api: getIt<ApiConsumer>(),
         hadithBox: Hive.box<HadithModel>(ApiKeys.hadithBox),
-        hadithDetailsBox: Hive.box<HadithDetailsModel>(
+        hadithDetailsBox: Hive.box<List<HadithDetailsModel>>(
           ApiKeys.hadithDetailsBox,
         ),
       ),

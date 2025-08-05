@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_keys.dart';
+import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_model/chapter_model.dart';
 import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_model/hadith_details_model.dart';
 import 'package:muslim_app/features/hadith/data/model/hadith_model/hadith_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_details_model.dart';
@@ -27,6 +28,7 @@ abstract class HiveService {
     Hive.registerAdapter(AudioModelAdapter());
     Hive.registerAdapter(HadithModelAdapter());
     Hive.registerAdapter(HadithDetailsModelAdapter());
+    Hive.registerAdapter(ChapterModelAdapter());
   }
 
   static Future<void> initBox() async {
@@ -34,7 +36,7 @@ abstract class HiveService {
     await Hive.openBox<SuraDetailsModel>(ApiKeys.suraDetailsBox);
     await Hive.openBox<AudioDetailsModel>(ApiKeys.audioBox);
     await Hive.openBox<HadithModel>(ApiKeys.hadithBox);
-    await Hive.openBox<HadithDetailsModel>(ApiKeys.hadithDetailsBox);
+    await Hive.openBox<List<HadithDetailsModel>>(ApiKeys.hadithDetailsBox);
   }
 
   static Future<void> clearAll() async {

@@ -23,6 +23,11 @@ class HadithScreenBody extends StatelessWidget {
             Image.asset(AppImages.hadithBg, fit: BoxFit.fill),
             Image.asset(AppImages.shadowBg, fit: BoxFit.fill),
             BlocConsumer<HadithCubit, HadithState>(
+              buildWhen: (previous, current) {
+                return current is GetAllHadithSuccess ||
+                    current is GetAllHadithLoading ||
+                    current is GetAllHadithError;
+              },
               listener: (context, state) {},
               builder: (context, state) {
                 var cubit = context.read<HadithCubit>();

@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_repo.dart';
 import 'package:muslim_app/features/hadith/domain/entity/hadith_chapter_details_entity/hadith_details_entitiy.dart';
 import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_entity.dart';
-
 part 'hadith_state.dart';
 
 class HadithCubit extends Cubit<HadithState> {
@@ -21,7 +20,7 @@ class HadithCubit extends Cubit<HadithState> {
     );
   }
 
-  Future<void> getHadithById(int id) async {
+  Future<void> getHadithById(String id) async {
     emit(GetHadithByIdLoading());
     final result = await hadithRepo.getHadithById(id);
     result.fold(

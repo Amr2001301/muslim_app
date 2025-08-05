@@ -4,5 +4,5 @@ import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_en
 
 abstract class HadithRepo {
   Future<Either<String, List<HadithEntity>>> getAllHadith(String? name);
-  Future<Either<String, List<HadithDetailsEntitiy>>> getHadithById(int id);
+  Future<Either<String, List<HadithDetailsEntitiy>>> getHadithById(String id);
 }

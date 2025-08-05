@@ -16,7 +16,7 @@ import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_en
 class HadithRepoImpl extends HadithRepo {
   final ApiConsumer api;
   final Box<HadithModel> hadithBox;
-  final Box<HadithDetailsModel> hadithDetailsBox;
+  final Box<List<HadithDetailsModel>> hadithDetailsBox;
 
   HadithRepoImpl({
     required this.api,
@@ -51,7 +51,7 @@ class HadithRepoImpl extends HadithRepo {
       for (var element in hadithModelList) {
         hadithBox.add(element);
       }
-      log(hadithBox.values.toString());
+      log("hadithBox: ${hadithBox.values.toString()}");
       List<HadithEntity> hadithEntityList = hadithModelList
           .map((e) => e.toEntity())
           .toList();
@@ -75,7 +75,7 @@ class HadithRepoImpl extends HadithRepo {
 
   @override
   Future<Either<String, List<HadithDetailsEntitiy>>> getHadithById(
-    int id,
+    String id,
   ) async {
     try {
       final response = await api.get(
@@ -90,9 +90,8 @@ class HadithRepoImpl extends HadithRepo {
           (response['hadiths']['data'] as List)
               .map((e) => HadithDetailsModel.fromJson(e))
               .toList();
-      for (var element in hadithModelList) {
-        hadithDetailsBox.add(element);
-      }
+      hadithDetailsBox.put(id, hadithModelList);
+      log('hadithDetailsBox: ${hadithDetailsBox.get(id)}');
       List<HadithDetailsEntitiy> hadithDetailsEntityList = hadithModelList
           .map((e) => e.toEntity())
           .toList();
@@ -100,6 +99,13 @@ class HadithRepoImpl extends HadithRepo {
     } catch (e, st) {
       log('getQuran ERROR: $e');
       log('STACK: $st');
+      if (hadithDetailsBox.isNotEmpty) {
+        List<HadithDetailsModel> hadithModelList = hadithDetailsBox.get(id)!;
+        List<HadithDetailsEntitiy> hadithDetailsEntityList = hadithModelList
+            .map((e) => e.toEntity())
+            .toList();
+        return Right(hadithDetailsEntityList);
+      }
       return Left('error'.tr());
     }
   }
