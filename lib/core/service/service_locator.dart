@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_keys.dart';
 import 'package:muslim_app/core/api/dio_consumer.dart';
+import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_model/hadith_details_model.dart';
 import 'package:muslim_app/features/hadith/data/model/hadith_model/hadith_model.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_repo.dart';
 import 'package:muslim_app/features/hadith/domain/repo/hadith_repo_impl.dart';
@@ -30,6 +31,9 @@ abstract class ServiceLocator {
       HadithRepoImpl(
         api: getIt<ApiConsumer>(),
         hadithBox: Hive.box<HadithModel>(ApiKeys.hadithBox),
+        hadithDetailsBox: Hive.box<HadithDetailsModel>(
+          ApiKeys.hadithDetailsBox,
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:muslim_app/core/translations/bloc/translations_bloc.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
-import 'package:muslim_app/features/hadith/domain/entity/hadith_entity.dart';
+import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_entity.dart';
 
 class HadithChapterItem extends StatelessWidget {
   const HadithChapterItem({super.key, required this.hadithEntity});

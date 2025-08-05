@@ -17,14 +17,11 @@ class HadithScreenBody extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Stack(
+          fit: StackFit.expand,
           alignment: Alignment.topCenter,
           children: [
             Image.asset(AppImages.hadithBg, fit: BoxFit.fill),
-            Image.asset(
-              AppImages.shadowBg,
-              fit: BoxFit.fill,
-              width: double.infinity,
-            ),
+            Image.asset(AppImages.shadowBg, fit: BoxFit.fill),
             BlocConsumer<HadithCubit, HadithState>(
               listener: (context, state) {},
               builder: (context, state) {

@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
-import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_entity.dart';
+import 'package:muslim_app/features/hadith/domain/entity/hadith_chapter_details_entity/chapter_hadith_entity.dart';
+part 'chapter_model.g.dart';
 
-part 'hadith_model.g.dart';
-
-@HiveType(typeId: 8)
-class HadithModel extends Equatable {
+@HiveType(typeId: 10)
+class ChapterModel extends Equatable {
   @HiveField(0)
   final int? id;
   @HiveField(1)
@@ -19,7 +18,7 @@ class HadithModel extends Equatable {
   @HiveField(5)
   final String? bookSlug;
 
-  const HadithModel({
+  const ChapterModel({
     this.id,
     this.chapterNumber,
     this.chapterEnglish,
@@ -28,18 +27,7 @@ class HadithModel extends Equatable {
     this.bookSlug,
   });
 
-  HadithEntity toEntity() {
-    return HadithEntity(
-      id: id,
-      chapterNumber: chapterNumber,
-      chapterEnglish: chapterEnglish,
-      chapterUrdu: chapterUrdu,
-      chapterArabic: chapterArabic,
-      bookSlug: bookSlug,
-    );
-  }
-
-  factory HadithModel.fromJson(Map<String, dynamic> json) => HadithModel(
+  factory ChapterModel.fromJson(Map<String, dynamic> json) => ChapterModel(
     id: json['id'] as int?,
     chapterNumber: json['chapterNumber'] as String?,
     chapterEnglish: json['chapterEnglish'] as String?,
@@ -56,6 +44,14 @@ class HadithModel extends Equatable {
     'chapterArabic': chapterArabic,
     'bookSlug': bookSlug,
   };
+
+  ChapterHadithEntity toEntity() {
+    return ChapterHadithEntity(
+      id: id,
+      chapterArabic: chapterArabic,
+      bookSlug: bookSlug,
+    );
+  }
 
   @override
   List<Object?> get props {

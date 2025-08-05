@@ -4,4 +4,5 @@ abstract class ApiEndpiont {
   static const String getSurahAudio = "https://quranapi.pages.dev/api";
   static const String getAllHadith =
       "https://hadithapi.com/api/sahih-muslim/chapters";
+  static const String getHadithByIndex = "https://hadithapi.com/api/hadiths";
 }
