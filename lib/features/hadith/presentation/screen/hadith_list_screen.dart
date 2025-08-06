@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/routes/routes.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
@@ -63,6 +64,12 @@ class _ListHadithScreenState extends State<ListHadithScreen> {
                               items: state.hadithDetails
                                   .map(
                                     (e) => HadithSliderItem(
+                                      onTap: () {
+                                        context.pushNamed(
+                                          Routes.hadithDetailsScreen,
+                                          arguments: e,
+                                        );
+                                      },
                                       hadithEntity: widget.hadithEntity,
                                       hadithDetailsEntitiy: e,
                                     ),

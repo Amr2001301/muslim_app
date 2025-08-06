@@ -79,6 +79,10 @@ class QuranRepoImpl implements QuranRepo {
   @override
   Future<Either<String, SuraDetailsEntity>> getSuraByIndex(int index) async {
     try {
+      final sura = suraDetailsBox.get(index);
+      if (suraDetailsBox.isNotEmpty && sura != null) {
+        return Right(sura.toEntity());
+      }
       final response = await api.get(path: '${ApiEndpiont.getSurah}/$index');
       SuraDetailsModel suraDetailsModel = SuraDetailsModel.fromJson(
         response['data'],

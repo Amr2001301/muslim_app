@@ -4,8 +4,10 @@ import 'package:muslim_app/core/routes/routes.dart';
 import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/features/dashboard/presentation/screen/dashboard_screen.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_repo.dart';
+import 'package:muslim_app/features/hadith/domain/entity/hadith_chapter_details_entity/hadith_details_entitiy.dart';
 import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_entity.dart';
 import 'package:muslim_app/features/hadith/presentation/cubit/hadith_cubit.dart';
+import 'package:muslim_app/features/hadith/presentation/screen/hadith_details_screen.dart';
 import 'package:muslim_app/features/hadith/presentation/screen/hadith_list_screen.dart';
 import 'package:muslim_app/features/onboarding/presentation/cubit/onboarding_cubit.dart';
 import 'package:muslim_app/features/onboarding/presentation/screen/onbaording_screen.dart';
@@ -48,6 +50,14 @@ abstract class OngenerateRoutes {
               hadithEntity: settings.arguments as HadithEntity,
             ),
           ),
+        );
+      case Routes.hadithDetailsScreen:
+        return MaterialPageRoute(
+          builder: (context) {
+            return HadithDetailsScreen(
+              hadithDetailsEntitiy: settings.arguments as HadithDetailsEntitiy,
+            );
+          },
         );
       default:
         return MaterialPageRoute(
