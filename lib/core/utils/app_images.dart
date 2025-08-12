@@ -18,6 +18,7 @@ abstract class AppImages {
   static const String eveningAzkar = 'assets/image/evening_azkar.png';
   static const String morningAzkar = 'assets/image/morning_azkar.png';
   static const String compass = 'assets/image/compass.png';
+  static const String kaba = 'assets/image/kaba.png';
   static const String hadithCardBackGround =
       'assets/image/HadithCardBackGround 1.png';
   static const String shadowBg = "assets/image/shadow_bg.png";

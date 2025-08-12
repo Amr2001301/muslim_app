@@ -19,6 +19,7 @@ GetIt getIt = GetIt.instance;
 abstract class ServiceLocator {
   static void init() {
     getIt.registerSingleton<ApiConsumer>(DioConsumer(dio: Dio()));
+
     getIt.registerSingleton<QuranRepo>(
       QuranRepoImpl(
         suraBox: Hive.box<SuraModel>(ApiKeys.suraBox),
@@ -27,6 +28,7 @@ abstract class ServiceLocator {
         audioBox: Hive.box<AudioDetailsModel>(ApiKeys.audioBox),
       ),
     );
+
     getIt.registerSingleton<HadithRepo>(
       HadithRepoImpl(
         api: getIt<ApiConsumer>(),
