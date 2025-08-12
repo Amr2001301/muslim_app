@@ -1,0 +1,14 @@
+import 'package:equatable/equatable.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/gregorian_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/hijri_time_entity.dart';
+
+class DataPrayInfoEntity extends Equatable {
+  final String? readable;
+  final HijriTimeEntity? hijri;
+  final GregorianEntity? gregorian;
+
+  const DataPrayInfoEntity({this.readable, this.hijri, this.gregorian});
+
+  @override
+  List<Object?> get props => [readable, hijri];
+}

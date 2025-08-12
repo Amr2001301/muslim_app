@@ -1,0 +1,173 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muslim_app/core/utils/app_colors.dart';
+import 'package:muslim_app/core/utils/app_const.dart';
+import 'package:muslim_app/core/utils/app_images.dart';
+import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/widgets/custom_loading_app.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit.dart';
+import 'package:muslim_app/features/pray/presentation/widgets/azkar_item.dart';
+import 'package:muslim_app/features/pray/presentation/widgets/custom_slider_pary_time.dart';
+
+class PrayBody extends StatelessWidget {
+  const PrayBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<PrayCubit, PrayState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is PraySuccess) {
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppConst.kDefaultPadding,
+                ),
+                child: Column(
+                  children: [
+                    verticalSpace(30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: Image.asset(AppImages.quranHomeLogo),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.brownColor,
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      height: 301.h,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.asset(AppImages.timeBg, fit: BoxFit.fill),
+                          PositionedDirectional(
+                            top: 25.h,
+                            start: 25.w,
+                            child: Text(
+                              state.prayEntity.dataInfoEntity.hijri!.date ?? '',
+                              style: AppStyles.style13SemiBold,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          PositionedDirectional(
+                            top: 25.h,
+                            end: 25.w,
+                            child: Text(
+                              state.prayEntity.dataInfoEntity.gregorian!.date ??
+                                  '',
+                              style: AppStyles.style13SemiBold,
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
+                          PositionedDirectional(
+                            top: 14.h,
+                            start: 0,
+                            end: 0,
+                            child: Column(
+                              children: [
+                                Text(
+                                  'وقت الصلاة',
+                                  style: AppStyles.style16Bold.copyWith(
+                                    color: AppColors.scaffoldBgDarkColor
+                                        // ignore: deprecated_member_use
+                                        .withOpacity(0.7),
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  state
+                                          .prayEntity
+                                          .dataInfoEntity
+                                          .hijri!
+                                          .weekday!
+                                          .ar ??
+                                      '',
+                                  style: AppStyles.style20Bold.copyWith(
+                                    color: AppColors.scaffoldBgDarkColor
+                                        // ignore: deprecated_member_use
+                                        .withOpacity(0.9),
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          PositionedDirectional(
+                            top: 104.h,
+                            start: 0,
+                            end: 0,
+                            child: CustomSliderParyTime(
+                              prayEntity: state.prayEntity,
+                            ),
+                          ),
+                          PositionedDirectional(
+                            bottom: 8,
+                            start: 16,
+                            end: 16,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.volume_off_rounded,
+                                    color: AppColors.primaryLightColor,
+                                  ),
+                                ),
+                                Text(
+                                  'Next Pray - 02:32',
+                                  style: AppStyles.style16Bold.copyWith(
+                                    color: AppColors.scaffoldBgDarkColor,
+                                  ),
+                                ),
+                                Container(width: 42),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: Text('الاذكار', style: AppStyles.style20Bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 240.h,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AzkarItem(
+                              image: AppImages.morningAzkar,
+                              title: 'اذكار الصباح',
+                            ),
+                          ),
+                          horizontalSpace(20),
+                          Expanded(
+                            child: AzkarItem(
+                              image: AppImages.eveningAzkar,
+                              title: 'اذكار المساء',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        } else if (state is PrayLoading) {
+          return CustomLoadingApp();
+        } else {
+          return SizedBox.shrink();
+        }
+      },
+    );
+  }
+}

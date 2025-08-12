@@ -3,11 +3,9 @@ PODS:
     - Flutter
     - FlutterMacOS
   - Flutter (1.0.0)
-  - flutter_compass_v2 (0.0.1):
+  - flutter_compass (0.0.1):
     - Flutter
   - flutter_native_splash (2.4.3):
-    - Flutter
-  - flutter_qiblah (0.0.1):
     - Flutter
   - fluttertoast (0.0.2):
     - Flutter
@@ -27,9 +25,8 @@ PODS:
 DEPENDENCIES:
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/darwin`)
   - Flutter (from `Flutter`)
-  - flutter_compass_v2 (from `.symlinks/plugins/flutter_compass_v2/ios`)
+  - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
-  - flutter_qiblah (from `.symlinks/plugins/flutter_qiblah/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -41,12 +38,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/audioplayers_darwin/darwin"
   Flutter:
     :path: Flutter
-  flutter_compass_v2:
-    :path: ".symlinks/plugins/flutter_compass_v2/ios"
+  flutter_compass:
+    :path: ".symlinks/plugins/flutter_compass/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
-  flutter_qiblah:
-    :path: ".symlinks/plugins/flutter_qiblah/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   geolocator_apple:
@@ -61,9 +56,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   audioplayers_darwin: 4027b33a8f471d996c13f71cb77f0b1583b5d923
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_compass_v2: f7704b078814b705e76ae2bd48fe48ae6cd067df
+  flutter_compass: cbbd285cea1584c7ac9c4e0c3e1f17cbea55e855
   flutter_native_splash: df59bb2e1421aa0282cb2e95618af4dcb0c56c29
-  flutter_qiblah: f69eeb708d127a2634073ab1f27771c979928f50
   fluttertoast: 21eecd6935e7064cc1fcb733a4c5a428f3f24f0f
   geolocator_apple: 66b711889fd333205763b83c9dcf0a57a28c7afd
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
