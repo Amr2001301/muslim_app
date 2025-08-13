@@ -31,8 +31,8 @@ class CustomItemParery extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(paryName, style: AppStyles.style16Bold),
-              Text(paryTime, style: AppStyles.style13SemiBold),
+              Text(paryName, style: AppStyles.style13SemiBold),
+              Text(paryTime, style: AppStyles.style16Bold),
             ],
           ),
         ),

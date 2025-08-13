@@ -1,22 +1,35 @@
-part of 'pray_cubit.dart';
+import 'package:equatable/equatable.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity.dart';
 
-sealed class PrayState extends Equatable {
+abstract class PrayState extends Equatable {
   const PrayState();
+  @override
+  List<Object?> get props => [];
+}
+
+class PrayInitial extends PrayState {}
+
+class PrayLoading extends PrayState {}
+
+class PraySuccess extends PrayState {
+  final PrayEntity prayEntity;
+  final String nextPrayerName;
+  final DateTime nextPrayerTime;
+
+  const PraySuccess({
+    required this.prayEntity,
+    required this.nextPrayerName,
+    required this.nextPrayerTime,
+  });
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [prayEntity, nextPrayerName, nextPrayerTime];
 }
 
-final class PrayInitial extends PrayState {}
-
-final class PrayLoading extends PrayState {}
-
-final class PraySuccess extends PrayState {
-  final PrayEntity prayEntity;
-  const PraySuccess({required this.prayEntity});
-}
-
-final class PrayFailure extends PrayState {
+class PrayFailure extends PrayState {
   final String message;
   const PrayFailure({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }

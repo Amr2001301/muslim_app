@@ -31,5 +31,9 @@
     "rotate_right":"Rotate the device to the right",
     "rotate_left":"Rotate the device to the left",
     "rotate_about":"Rotate the device to make the difference",
-    "face_macca":"You are now facing Mecca"
+    "face_macca":"You are now facing Mecca",
+    "next_prayer":"Next Prayer",
+    "alazkar":"Azkar",
+    "azkar_morning":"Azkar Morning",
+    "azkar_evening":"Azkar Evening"
 }

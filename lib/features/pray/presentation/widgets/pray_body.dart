@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +10,7 @@ import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_state.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/azkar_item.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/custom_slider_pary_time.dart';
 
@@ -111,15 +115,17 @@ class PrayBody extends StatelessWidget {
                               children: [
                                 IconButton(
                                   padding: EdgeInsets.zero,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    log(state.nextPrayerTime.toString());
+                                  },
                                   icon: Icon(
                                     Icons.volume_off_rounded,
                                     color: AppColors.primaryLightColor,
                                   ),
                                 ),
                                 Text(
-                                  'Next Pray - 02:32',
-                                  style: AppStyles.style16Bold.copyWith(
+                                  '${'next_prayer'.tr()} ${state.nextPrayerName}: ${DateFormat('HH:mm').format(state.nextPrayerTime)}',
+                                  style: AppStyles.style13SemiBold.copyWith(
                                     color: AppColors.scaffoldBgDarkColor,
                                   ),
                                 ),
@@ -134,7 +140,10 @@ class PrayBody extends StatelessWidget {
                       alignment: AlignmentDirectional.centerStart,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Text('الاذكار', style: AppStyles.style20Bold),
+                        child: Text(
+                          'alazkar'.tr(),
+                          style: AppStyles.style20Bold,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -144,14 +153,14 @@ class PrayBody extends StatelessWidget {
                           Expanded(
                             child: AzkarItem(
                               image: AppImages.morningAzkar,
-                              title: 'اذكار الصباح',
+                              title: 'azkar_morning'.tr(),
                             ),
                           ),
                           horizontalSpace(20),
                           Expanded(
                             child: AzkarItem(
                               image: AppImages.eveningAzkar,
-                              title: 'اذكار المساء',
+                              title: 'azkar_evening'.tr(),
                             ),
                           ),
                         ],
