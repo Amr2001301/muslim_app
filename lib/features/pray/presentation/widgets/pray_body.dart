@@ -4,13 +4,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muslim_app/core/routes/routes.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
-import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit.dart';
-import 'package:muslim_app/features/pray/presentation/cubit/pray_state.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_cubit.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_state.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/azkar_item.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/custom_slider_pary_time.dart';
 
@@ -152,6 +154,12 @@ class PrayBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: AzkarItem(
+                              onTap: () {
+                                context.pushNamed(
+                                  Routes.azkar,
+                                  arguments: "azkar_sabah",
+                                );
+                              },
                               image: AppImages.morningAzkar,
                               title: 'azkar_morning'.tr(),
                             ),
@@ -159,6 +167,12 @@ class PrayBody extends StatelessWidget {
                           horizontalSpace(20),
                           Expanded(
                             child: AzkarItem(
+                              onTap: () {
+                                context.pushNamed(
+                                  Routes.azkar,
+                                  arguments: "azkar_massa",
+                                );
+                              },
                               image: AppImages.eveningAzkar,
                               title: 'azkar_evening'.tr(),
                             ),

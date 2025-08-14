@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:muslim_app/core/service/formate_date_service.dart';
 import 'package:muslim_app/core/service/get_current_location_service.dart';
 import 'package:muslim_app/features/pray/domain/repo/pray_repo.dart';
-import 'package:muslim_app/features/pray/presentation/cubit/pray_state.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_state.dart';
 
 class PrayCubit extends Cubit<PrayState> {
   PrayCubit(this.prayRepo, this.getCurrentLocationService)

@@ -1,4 +1,4 @@
-import 'package:muslim_app/features/pray/domain/entitiy/time_pray_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/time_pray_entity.dart';
 
 MapEntry<String, DateTime> getNextPrayer24h(
   TimePrayEntity t, {

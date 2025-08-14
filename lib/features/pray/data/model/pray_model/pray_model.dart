@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/pray_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/pray_entity.dart';
 
 import 'date_pray.dart';
 import 'meta.dart';

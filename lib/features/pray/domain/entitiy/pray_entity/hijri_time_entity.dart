@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/month_entity.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/weekday_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/month_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/weekday_entity.dart';
 
 class HijriTimeEntity extends Equatable {
   final String? date;

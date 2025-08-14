@@ -9,7 +9,9 @@ import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_mod
 import 'package:muslim_app/features/hadith/data/model/hadith_model/hadith_model.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_repo.dart';
 import 'package:muslim_app/features/hadith/domain/repo/hadith_repo_impl.dart';
+import 'package:muslim_app/features/pray/data/repo/azkar_repo_impl.dart';
 import 'package:muslim_app/features/pray/data/repo/pray_repo_impl.dart';
+import 'package:muslim_app/features/pray/domain/repo/azkar_repo.dart';
 import 'package:muslim_app/features/pray/domain/repo/pray_repo.dart';
 import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_details_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/sura_details_model.dart';
@@ -42,6 +44,9 @@ abstract class ServiceLocator {
       ),
     );
     getIt.registerSingleton<PrayRepo>(PrayRepoImpl(api: getIt<ApiConsumer>()));
+    getIt.registerSingleton<AzkarRepo>(
+      AzkarRepoImpl(api: getIt<ApiConsumer>()),
+    );
     getIt.registerSingleton<GetCurrentLocationService>(
       GetCurrentLocationService(),
     );

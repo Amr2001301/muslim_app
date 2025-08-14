@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/time_pray_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/time_pray_entity.dart';
 
 class Timings extends Equatable {
   final String? fajr;

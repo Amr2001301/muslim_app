@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/data_pray_info_entity.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/time_pray_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/data_pray_info_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/time_pray_entity.dart';
 
 class PrayEntity extends Equatable {
   final TimePrayEntity timingEntity;

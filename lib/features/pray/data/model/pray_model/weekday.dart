@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/weekday_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/weekday_entity.dart';
 
 class Weekday extends Equatable {
   final String? en;

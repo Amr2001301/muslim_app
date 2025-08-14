@@ -4,7 +4,7 @@ import 'package:muslim_app/core/api/api_consumer.dart';
 import 'package:muslim_app/core/api/api_endpiont.dart';
 import 'package:muslim_app/core/api/errors/exception.dart';
 import 'package:muslim_app/features/pray/data/model/pray_model/pray_model.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/pray_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/pray_entity.dart';
 import 'package:muslim_app/features/pray/domain/repo/pray_repo.dart';
 
 class PrayRepoImpl extends PrayRepo {

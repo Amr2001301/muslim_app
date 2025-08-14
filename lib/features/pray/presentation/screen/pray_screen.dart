@@ -4,7 +4,7 @@ import 'package:muslim_app/core/service/get_current_location_service.dart';
 import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/features/pray/domain/repo/pray_repo.dart';
-import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit.dart';
+import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_cubit.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/pray_body.dart';
 
 class PrayScreen extends StatelessWidget {

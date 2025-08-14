@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/features/pray/domain/entitiy/month_entity.dart';
+import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/month_entity.dart';
 
 class Month extends Equatable {
   final int? number;

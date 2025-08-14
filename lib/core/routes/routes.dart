@@ -7,4 +7,5 @@ abstract class Routes {
   static const String hadithDetailsScreen = 'hadithDetailsScreen';
   static const String quran = '/quran';
   static const String azan = '/azan';
+  static const String azkar = '/azkar';
 }

@@ -11,6 +11,7 @@ import 'package:muslim_app/features/hadith/presentation/screen/hadith_details_sc
 import 'package:muslim_app/features/hadith/presentation/screen/hadith_list_screen.dart';
 import 'package:muslim_app/features/onboarding/presentation/cubit/onboarding_cubit.dart';
 import 'package:muslim_app/features/onboarding/presentation/screen/onbaording_screen.dart';
+import 'package:muslim_app/features/pray/presentation/screen/azkar_screen.dart';
 import 'package:muslim_app/features/quran/domain/entity/sura_entity/sura_entity.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
@@ -58,6 +59,10 @@ abstract class OngenerateRoutes {
               hadithDetailsEntitiy: settings.arguments as HadithDetailsEntitiy,
             );
           },
+        );
+      case Routes.azkar:
+        return MaterialPageRoute(
+          builder: (_) => AzkarScreen(azkarName: settings.arguments as String),
         );
       default:
         return MaterialPageRoute(
