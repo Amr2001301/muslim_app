@@ -35,5 +35,6 @@
     "next_prayer":"Next Prayer",
     "alazkar":"Azkar",
     "azkar_morning":"Azkar Morning",
-    "azkar_evening":"Azkar Evening"
+    "azkar_evening":"Azkar Evening",
+    "number_times":"Number of times"
 }

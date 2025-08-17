@@ -13,14 +13,18 @@ class AzkarLoading extends AzkarState {}
 
 class AzkarSuccess extends AzkarState {
   final List<AzkarEntity> azkarEntity;
-  const AzkarSuccess({required this.azkarEntity});
+  final int index;
+  final int repeate;
+  const AzkarSuccess({
+    required this.azkarEntity,
+    this.index = 0,
+    this.repeate = 0,
+  });
   @override
-  List<Object> get props => [azkarEntity];
+  List<Object> get props => [azkarEntity, index, repeate];
 }
 
 class AzkarFailure extends AzkarState {
   final String message;
   const AzkarFailure({required this.message});
-  @override
-  List<Object> get props => [message];
 }
