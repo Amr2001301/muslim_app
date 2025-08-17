@@ -1,17 +1,31 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/time_pray_entity.dart';
+part 'timings.g.dart';
 
+@HiveType(typeId: 14)
 class Timings extends Equatable {
+  @HiveField(0)
   final String? fajr;
+  @HiveField(1)
   final String? sunrise;
+  @HiveField(2)
   final String? dhuhr;
+  @HiveField(3)
   final String? asr;
+  @HiveField(4)
   final String? sunset;
+  @HiveField(5)
   final String? maghrib;
+  @HiveField(6)
   final String? isha;
+  @HiveField(7)
   final String? imsak;
+  @HiveField(8)
   final String? midnight;
+  @HiveField(9)
   final String? firstthird;
+  @HiveField(10)
   final String? lastthird;
 
   const Timings({

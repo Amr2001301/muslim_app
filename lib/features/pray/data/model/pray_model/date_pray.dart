@@ -1,13 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/data_pray_info_entity.dart';
-
 import 'gregorian.dart';
 import 'hijri.dart';
+part 'date_pray.g.dart';
 
+@HiveType(typeId: 15)
 class DatePray extends Equatable {
+  @HiveField(0)
   final String? readable;
+  @HiveField(1)
   final String? timestamp;
+  @HiveField(2)
   final Hijri? hijri;
+  @HiveField(3)
   final Gregorian? gregorian;
 
   const DatePray({this.readable, this.timestamp, this.hijri, this.gregorian});

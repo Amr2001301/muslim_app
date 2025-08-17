@@ -1,20 +1,32 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/hijri_time_entity.dart';
-
 import 'designation.dart';
 import 'month.dart';
 import 'weekday.dart';
+part 'hijri.g.dart';
 
+@HiveType(typeId: 16)
 class Hijri extends Equatable {
+  @HiveField(0)
   final String? date;
+  @HiveField(1)
   final String? format;
+  @HiveField(2)
   final String? day;
+  @HiveField(3)
   final Weekday? weekday;
+  @HiveField(4)
   final Month? month;
+  @HiveField(5)
   final String? year;
+  @HiveField(6)
   final Designation? designation;
+  @HiveField(7)
   final List<dynamic>? holidays;
+  @HiveField(8)
   final List<dynamic>? adjustedHolidays;
+  @HiveField(9)
   final String? method;
 
   const Hijri({

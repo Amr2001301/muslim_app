@@ -1,10 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/month_entity.dart';
+part 'month.g.dart';
 
+@HiveType(typeId: 18)
 class Month extends Equatable {
+  @HiveField(0)
   final int? number;
+  @HiveField(1)
   final String? en;
+  @HiveField(2)
   final String? ar;
+  @HiveField(3)
   final int? days;
 
   const Month({this.number, this.en, this.ar, this.days});

@@ -1,8 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/weekday_entity.dart';
+part 'weekday.g.dart';
 
+@HiveType(typeId: 17)
 class Weekday extends Equatable {
+  @HiveField(0)
   final String? en;
+  @HiveField(1)
   final String? ar;
 
   const Weekday({this.en, this.ar});

@@ -1,18 +1,28 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/gregorian_entity.dart';
-
 import 'designation.dart';
 import 'month.dart';
 import 'weekday.dart';
+part 'gregorian.g.dart';
 
+@HiveType(typeId: 20)
 class Gregorian extends Equatable {
+  @HiveField(0)
   final String? date;
+  @HiveField(1)
   final String? format;
+  @HiveField(2)
   final String? day;
+  @HiveField(3)
   final Weekday? weekday;
+  @HiveField(4)
   final Month? month;
+  @HiveField(5)
   final String? year;
+  @HiveField(6)
   final Designation? designation;
+  @HiveField(7)
   final bool? lunarSighting;
 
   const Gregorian({

@@ -1,13 +1,18 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/pray_entity/pray_entity.dart';
-
 import 'date_pray.dart';
 import 'meta.dart';
 import 'timings.dart';
+part 'pray_model.g.dart';
 
+@HiveType(typeId: 13)
 class PrayModel extends Equatable {
+  @HiveField(0)
   final Timings? timings;
+  @HiveField(1)
   final DatePray? date;
+  @HiveField(2)
   final Meta? meta;
 
   PrayEntity toEntity() {

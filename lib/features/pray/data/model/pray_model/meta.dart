@@ -1,16 +1,26 @@
 import 'package:equatable/equatable.dart';
-
+import 'package:hive_flutter/adapters.dart';
 import 'method.dart';
 import 'offset.dart';
+part 'meta.g.dart';
 
+@HiveType(typeId: 21)
 class Meta extends Equatable {
+  @HiveField(0)
   final double? latitude;
+  @HiveField(1)
   final double? longitude;
+  @HiveField(2)
   final String? timezone;
+  @HiveField(3)
   final Method? method;
+  @HiveField(4)
   final String? latitudeAdjustmentMethod;
+  @HiveField(5)
   final String? midnightMode;
+  @HiveField(6)
   final String? school;
+  @HiveField(7)
   final Offset? offset;
 
   const Meta({

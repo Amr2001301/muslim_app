@@ -1,7 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/adapters.dart';
+part 'params.g.dart';
 
+@HiveType(typeId: 25)
 class Params extends Equatable {
+  @HiveField(0)
   final double? fajr;
+  @HiveField(1)
   final double? isha;
 
   const Params({this.fajr, this.isha});

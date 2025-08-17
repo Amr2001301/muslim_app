@@ -4,6 +4,19 @@ import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_mod
 import 'package:muslim_app/features/hadith/data/model/hadith_chapter_details_model/hadith_details_model.dart';
 import 'package:muslim_app/features/hadith/data/model/hadith_model/hadith_model.dart';
 import 'package:muslim_app/features/pray/data/model/azkar_model/azkar_model.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/date_pray.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/designation.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/gregorian.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/hijri.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/location.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/meta.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/method.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/month.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/offset.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/params.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/pray_model.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/timings.dart';
+import 'package:muslim_app/features/pray/data/model/pray_model/weekday.dart';
 import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_details_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_audio_model/audio_model.dart';
 import 'package:muslim_app/features/quran/data/model/sura_details_model/ayah.dart';
@@ -31,6 +44,19 @@ abstract class HiveService {
     Hive.registerAdapter(HadithDetailsModelAdapter());
     Hive.registerAdapter(ChapterModelAdapter());
     Hive.registerAdapter(AzkarModelAdapter());
+    Hive.registerAdapter(PrayModelAdapter());
+    Hive.registerAdapter(DesignationAdapter());
+    Hive.registerAdapter(GregorianAdapter());
+    Hive.registerAdapter(HijriAdapter());
+    Hive.registerAdapter(LocationAdapter());
+    Hive.registerAdapter(MetaAdapter());
+    Hive.registerAdapter(MethodAdapter());
+    Hive.registerAdapter(MonthAdapter());
+    Hive.registerAdapter(OffsetAdapter());
+    Hive.registerAdapter(ParamsAdapter());
+    Hive.registerAdapter(TimingsAdapter());
+    Hive.registerAdapter(WeekdayAdapter());
+    Hive.registerAdapter(DatePrayAdapter());
   }
 
   static Future<void> initBox() async {
@@ -41,6 +67,7 @@ abstract class HiveService {
     await Hive.openBox<List<HadithDetailsModel>>(ApiKeys.hadithDetailsBox);
     await Hive.openBox<AzkarModel>(ApiKeys.azkarMorningBox);
     await Hive.openBox<AzkarModel>(ApiKeys.azkarEveningBox);
+    await Hive.openBox<PrayModel>(ApiKeys.prayBox);
   }
 
   static Future<void> clearAll() async {

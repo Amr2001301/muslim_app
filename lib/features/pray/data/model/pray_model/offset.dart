@@ -1,14 +1,26 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/adapters.dart';
+part 'offset.g.dart';
 
+@HiveType(typeId: 24)
 class Offset extends Equatable {
+  @HiveField(0)
   final int? imsak;
+  @HiveField(1)
   final int? fajr;
+  @HiveField(2)
   final int? sunrise;
+  @HiveField(3)
   final int? dhuhr;
+  @HiveField(4)
   final int? asr;
+  @HiveField(5)
   final int? maghrib;
+  @HiveField(6)
   final int? sunset;
+  @HiveField(7)
   final int? isha;
+  @HiveField(8)
   final int? midnight;
 
   const Offset({
