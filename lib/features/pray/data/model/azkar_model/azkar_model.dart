@@ -1,9 +1,15 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/pray/domain/entitiy/azkar_entity.dart/azkar_entity.dart';
+part 'azkar_model.g.dart';
 
+@HiveType(typeId: 12)
 class AzkarModel extends Equatable {
+  @HiveField(0)
   final String? zekr;
+  @HiveField(1)
   final int? repeat;
+  @HiveField(2)
   final String? bless;
 
   const AzkarModel({this.zekr, this.repeat, this.bless});
