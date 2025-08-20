@@ -19,10 +19,6 @@ class PrayRepoImpl extends PrayRepo {
     required double longitude,
   }) async {
     try {
-      if (prayBox.isNotEmpty) {
-        final cashed = prayBox.values.first;
-        return Right(cashed.toEntity());
-      }
       final response = await api.get(
         path: ApiEndpiont.getPrayerTime,
         queryParameters: {"latitude": latitude, "longitude": longitude},
