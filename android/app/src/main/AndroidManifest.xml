@@ -40,6 +40,12 @@
             </intent-filter>
         </receiver>    
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
+        <!-- Added ForegroundService declaration required for plugin foreground service support. Replace foregroundServiceType with the types your app needs -->
+        <service
+            android:name="com.dexterous.flutterlocalnotifications.ForegroundService"
+            android:exported="false"
+            android:stopWithTask="false"
+            android:foregroundServiceType="mediaPlayback|location" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
@@ -54,6 +60,10 @@
     </queries>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Added permissions required for notifications and DND control. POST_NOTIFICATIONS requires runtime request on Android 13+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
