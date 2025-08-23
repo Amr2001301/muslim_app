@@ -27,6 +27,7 @@ class PrayCubit extends Cubit<PrayState> {
           prayEntity: data,
           nextPrayerName: next.key,
           nextPrayerTime: next.value,
+          isSound: true,
         ),
       );
     });

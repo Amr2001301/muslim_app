@@ -15,15 +15,22 @@ class PraySuccess extends PrayState {
   final PrayEntity prayEntity;
   final String nextPrayerName;
   final DateTime nextPrayerTime;
+  final bool isSound;
 
   const PraySuccess({
     required this.prayEntity,
     required this.nextPrayerName,
     required this.nextPrayerTime,
+    this.isSound = true,
   });
 
   @override
-  List<Object?> get props => [prayEntity, nextPrayerName, nextPrayerTime];
+  List<Object?> get props => [
+    prayEntity,
+    nextPrayerName,
+    nextPrayerTime,
+    isSound,
+  ];
 }
 
 class PrayFailure extends PrayState {

@@ -11,6 +11,7 @@ import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
+import 'package:muslim_app/features/pray/data/repo/azan_repo_impl.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_cubit.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_state.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/azkar_item.dart';
@@ -118,10 +119,15 @@ class PrayBody extends StatelessWidget {
                                 IconButton(
                                   padding: EdgeInsets.zero,
                                   onPressed: () {
-                                    log(state.nextPrayerTime.toString());
+                                    AzanRepoImpl().scheduleTodayAdhan(
+                                      playSound: !state.isSound,
+                                    );
+                                    log('isSound: ${!state.isSound}');
                                   },
                                   icon: Icon(
-                                    Icons.volume_off_rounded,
+                                    state.isSound
+                                        ? Icons.volume_up_rounded
+                                        : Icons.volume_off_rounded,
                                     color: AppColors.primaryLightColor,
                                   ),
                                 ),
