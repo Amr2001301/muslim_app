@@ -12,6 +12,7 @@ class CustomCursolSlider extends StatelessWidget {
     this.autoPlay,
     this.reverse,
     this.inifinitScroll,
+    this.onPageChanged,
   });
   final List<Widget>? items;
   final double? height;
@@ -20,6 +21,7 @@ class CustomCursolSlider extends StatelessWidget {
   final bool? autoPlay;
   final bool? reverse;
   final bool? inifinitScroll;
+  final dynamic Function(int, CarouselPageChangedReason)? onPageChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class CustomCursolSlider extends StatelessWidget {
         autoPlayCurve: Curves.fastOutSlowIn,
         enlargeCenterPage: true,
         enlargeFactor: 0.3,
-        onPageChanged: (index, reason) {},
+        onPageChanged: onPageChanged,
         scrollDirection: Axis.horizontal,
       ),
     );

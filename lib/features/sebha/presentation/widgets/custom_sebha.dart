@@ -1,14 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/widgets/custom_button.dart';
+import 'package:muslim_app/features/sebha/presentation/cubit/sebha_cubit.dart';
 
 class CustomSebha extends StatelessWidget {
   const CustomSebha({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<SebhaCubit>();
     return Stack(
       children: [
         Image.asset(AppImages.sebha),
@@ -20,9 +24,18 @@ class CustomSebha extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('1/33', style: AppStyles.style20Bold),
+              Text('${cubit.sebhaCount}/33', style: AppStyles.style20Bold),
               verticalSpace(16),
-              Text('${'num_of_round'.tr()} : 30', style: AppStyles.style20Bold),
+              Text(
+                '${'num_of_round'.tr()} : ${cubit.numOfRounds}',
+                style: AppStyles.style20Bold,
+              ),
+              verticalSpace(16),
+              CustomButton(
+                width: 80,
+                bottom: Text('count'.tr(), style: AppStyles.style16Bold),
+                onPressed: cubit.changeSebhaCount,
+              ),
             ],
           ),
         ),
