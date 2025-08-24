@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/routes/routes.dart';
+import 'package:muslim_app/core/service/shared_prefs_service.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
@@ -47,8 +48,12 @@ class OnbaordingScreen extends StatelessWidget {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       context.pushReplacementNamed(Routes.dashboard);
+                      await SharedPrefsService.setData(
+                        AppConst.kFirstTime,
+                        true,
+                      );
                     },
                     child: Text(
                       'skip'.tr(),

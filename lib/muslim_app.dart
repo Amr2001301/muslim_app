@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muslim_app/core/routes/ongenerate_routes.dart';
 import 'package:muslim_app/core/routes/routes.dart';
 import 'package:muslim_app/core/service/service_locator.dart';
+import 'package:muslim_app/core/service/shared_prefs_service.dart';
 import 'package:muslim_app/core/theme/bloc/theme_bloc.dart';
 import 'package:muslim_app/core/theme/dark_theme.dart';
 import 'package:muslim_app/core/theme/light_theme.dart';
 import 'package:muslim_app/core/translations/bloc/translations_bloc.dart';
+import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/features/quran/domain/repo/quran_repo.dart';
 import 'package:muslim_app/features/quran/presentation/cubit/quran_cubit/quran_cubit.dart';
 
@@ -39,7 +41,10 @@ class MuslimApp extends StatelessWidget {
                 locale: context.locale,
                 theme: state.isDarkMode ? darkTheme() : lightTheme(),
                 debugShowCheckedModeBanner: false,
-                initialRoute: Routes.onBoarding,
+                initialRoute:
+                    SharedPrefsService.getData(AppConst.kFirstTime) == true
+                    ? Routes.dashboard
+                    : Routes.onBoarding,
               );
             },
           );

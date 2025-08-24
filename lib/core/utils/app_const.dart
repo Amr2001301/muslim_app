@@ -8,6 +8,7 @@ abstract class AppConst {
   static const double kBorderRadius = 16.0;
   static const double kSmalBorderRadius = 10.0;
   static const String kfontSized = "font_size";
+  static const String kFirstTime = "firstTime";
 }
 
 SizedBox verticalSpace(double height) {
