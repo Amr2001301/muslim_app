@@ -90,7 +90,7 @@ class AzanRepoImpl implements AzanRepo {
       log("fajr time======= ${fajrTime.toString()}");
       await scheduleAdhan(
         id: 101,
-        prayerTimeLocal: DateTime.now().add(const Duration(seconds: 10)),
+        prayerTimeLocal: ensureFuture(fajrTime),
         title: 'أذان الفجر',
         body: 'حان الآن موعد أذان الفجر',
         playSound: playSound,

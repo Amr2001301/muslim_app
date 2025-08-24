@@ -5,6 +5,7 @@ import 'package:muslim_app/features/hadith/presentation/screen/hadith_screen.dar
 import 'package:muslim_app/features/pray/presentation/screen/pray_screen.dart';
 import 'package:muslim_app/features/qibla/presentation/screen/qiblah.dart';
 import 'package:muslim_app/features/quran/presentation/screen/quran_screen.dart';
+import 'package:muslim_app/features/sebha/presentation/pages/sebha_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List<CustomNavBarScreen> _screens = [
     CustomNavBarScreen(screen: const QuranScreen()),
     CustomNavBarScreen(screen: const HadithScreen()),
-    CustomNavBarScreen(screen: const SizedBox()),
+    CustomNavBarScreen(screen: const SebhaScreen()),
     CustomNavBarScreen(screen: const QiblahScreen()),
     CustomNavBarScreen(screen: const PrayScreen()),
   ];

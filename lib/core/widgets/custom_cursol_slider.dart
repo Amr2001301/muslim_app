@@ -9,11 +9,17 @@ class CustomCursolSlider extends StatelessWidget {
     this.height,
     this.aspectRatio,
     this.viewportFraction,
+    this.autoPlay,
+    this.reverse,
+    this.inifinitScroll,
   });
   final List<Widget>? items;
   final double? height;
   final double? aspectRatio;
   final double? viewportFraction;
+  final bool? autoPlay;
+  final bool? reverse;
+  final bool? inifinitScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +30,9 @@ class CustomCursolSlider extends StatelessWidget {
         aspectRatio: aspectRatio ?? 104 / 128,
         viewportFraction: viewportFraction ?? .3,
         initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: true,
-        autoPlay: true,
+        enableInfiniteScroll: inifinitScroll ?? true,
+        reverse: reverse ?? true,
+        autoPlay: autoPlay ?? true,
         autoPlayInterval: Duration(seconds: 3),
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
