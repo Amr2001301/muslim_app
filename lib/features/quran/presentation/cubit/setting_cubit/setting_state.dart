@@ -9,6 +9,13 @@ sealed class SettingState extends Equatable {
 
 final class SettingInitial extends SettingState {}
 
+final class ChangeFontSize extends SettingState {
+  final double fontSize;
+  const ChangeFontSize({required this.fontSize});
+  @override
+  List<Object> get props => [fontSize];
+}
+
 final class AutomaticAnimationState extends SettingState {
   final bool isAutomaticAnimation;
   const AutomaticAnimationState({required this.isAutomaticAnimation});

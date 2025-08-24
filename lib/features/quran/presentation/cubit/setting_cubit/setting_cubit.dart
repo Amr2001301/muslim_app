@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:muslim_app/core/service/shared_prefs_service.dart';
+import 'package:muslim_app/core/utils/app_const.dart';
+import 'package:rxdart/subjects.dart';
 part 'setting_state.dart';
 
 class SettingCubit extends Cubit<SettingState> {
@@ -11,6 +15,16 @@ class SettingCubit extends Cubit<SettingState> {
   ScrollController scrollController = ScrollController();
   Timer? timer;
   bool isVisiblBottomSheet = true;
+
+  // change font sized
+  BehaviorSubject<double> fontSize = BehaviorSubject<double>.seeded(22);
+
+  void changeFontSized(double fontSized) async {
+    fontSize.add(fontSized);
+    await SharedPrefsService.setData(AppConst.kfontSized, fontSized);
+    emit(ChangeFontSize(fontSize: fontSized));
+    log('fontSize: $fontSize');
+  }
 
   void startAnimatioScroll(int numberPages) {
     scrollController.animateTo(

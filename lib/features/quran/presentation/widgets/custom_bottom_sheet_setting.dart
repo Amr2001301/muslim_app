@@ -26,10 +26,16 @@ class CustomBottomSheetSetting extends StatelessWidget {
         children: [
           CustomBottomSheetBotton(
             onTap: () {
+              final settingCubit = context.read<SettingCubit>();
               showModalBottomSheet(
+                isScrollControlled: true,
                 context: context,
-                builder: (context) =>
-                    CustomBottonSheet(child: CustomFontSizeSlider()),
+                builder: (context) => IntrinsicHeight(
+                  child: BlocProvider.value(
+                    value: settingCubit,
+                    child: CustomBottonSheet(child: CustomFontSizeSlider()),
+                  ),
+                ),
               );
             },
             title: 'fontSize',
@@ -45,9 +51,13 @@ class CustomBottomSheetSetting extends StatelessWidget {
           CustomBottomSheetBotton(
             onTap: () {
               showModalBottomSheet(
+                isScrollControlled: true,
                 context: context,
-                builder: (context) => CustomBottonSheet(
-                  child: SoundAudioBottomSheet(surahIndex: surahIndex),
+                builder: (context) => FractionallySizedBox(
+                  heightFactor: 0.4,
+                  child: CustomBottonSheet(
+                    child: SoundAudioBottomSheet(surahIndex: surahIndex),
+                  ),
                 ),
               );
             },
