@@ -32,11 +32,13 @@ class CustomNavBar extends StatelessWidget {
         children: [
           ...List.generate(
             5,
-            (index) => InkWell(
-              onTap: () => onTap(index),
-              child: CustomNavBarItem(
-                isSelected: currentIndex == index,
-                navBarModel: NavBarModel.navbarItemList[index],
+            (index) => Expanded(
+              child: InkWell(
+                onTap: () => onTap(index),
+                child: CustomNavBarItem(
+                  isSelected: currentIndex == index,
+                  navBarModel: NavBarModel.navbarItemList[index],
+                ),
               ),
             ),
           ),
