@@ -66,10 +66,12 @@ class HadithSliderItem extends StatelessWidget {
                         Expanded(
                           child: Text(
                             hadithEntity.chapterArabic ?? '',
-                            style: AppStyles.style20Bold.copyWith(
+                            style: AppStyles.style16Bold.copyWith(
                               color: AppColors.blackColor,
                             ),
                             textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
                           ),
                         ),
                         Image.asset(
