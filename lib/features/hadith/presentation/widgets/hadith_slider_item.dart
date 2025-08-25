@@ -63,10 +63,13 @@ class HadithSliderItem extends StatelessWidget {
                           AppImages.suraDecorationRight,
                           color: AppColors.blackColor,
                         ),
-                        Text(
-                          hadithEntity.chapterArabic ?? '',
-                          style: AppStyles.style20Bold.copyWith(
-                            color: AppColors.blackColor,
+                        Expanded(
+                          child: Text(
+                            hadithEntity.chapterArabic ?? '',
+                            style: AppStyles.style20Bold.copyWith(
+                              color: AppColors.blackColor,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         Image.asset(

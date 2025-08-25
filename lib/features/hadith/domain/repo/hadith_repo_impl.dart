@@ -16,7 +16,7 @@ import 'package:muslim_app/features/hadith/domain/entity/hadith_entity/hadith_en
 class HadithRepoImpl extends HadithRepo {
   final ApiConsumer api;
   final Box<HadithModel> hadithBox;
-  final Box<List<HadithDetailsModel>> hadithDetailsBox;
+  final Box<dynamic> hadithDetailsBox;
 
   HadithRepoImpl({
     required this.api,
@@ -78,6 +78,35 @@ class HadithRepoImpl extends HadithRepo {
     String id,
   ) async {
     try {
+      if (hadithDetailsBox.isNotEmpty) {
+        final dynamic cached = hadithDetailsBox.get(id);
+        if (cached != null) {
+          List<HadithDetailsModel> hadithModelList = [];
+          if (cached is List<HadithDetailsModel>) {
+            hadithModelList = cached;
+          } else if (cached is List) {
+            hadithModelList = cached.map<HadithDetailsModel>((e) {
+              if (e is HadithDetailsModel) return e;
+              if (e is Map) {
+                return HadithDetailsModel.fromJson(
+                  Map<String, dynamic>.from(e),
+                );
+              }
+              if (e is Map<String, dynamic>) {
+                return HadithDetailsModel.fromJson(e);
+              }
+              return HadithDetailsModel.fromJson(
+                Map<String, dynamic>.from(e as Map),
+              );
+            }).toList();
+          }
+          List<HadithDetailsEntitiy> hadithDetailsEntityList = hadithModelList
+              .map((e) => e.toEntity())
+              .toList();
+          return Right(hadithDetailsEntityList);
+        }
+      }
+
       final response = await api.get(
         path: ApiEndpiont.getHadithByIndex,
         queryParameters: {
@@ -100,11 +129,32 @@ class HadithRepoImpl extends HadithRepo {
       log('getQuran ERROR: $e');
       log('STACK: $st');
       if (hadithDetailsBox.isNotEmpty) {
-        List<HadithDetailsModel> hadithModelList = hadithDetailsBox.get(id)!;
-        List<HadithDetailsEntitiy> hadithDetailsEntityList = hadithModelList
-            .map((e) => e.toEntity())
-            .toList();
-        return Right(hadithDetailsEntityList);
+        final dynamic cached = hadithDetailsBox.get(id);
+        if (cached != null) {
+          List<HadithDetailsModel> hadithModelList = [];
+          if (cached is List<HadithDetailsModel>) {
+            hadithModelList = cached;
+          } else if (cached is List) {
+            hadithModelList = cached.map<HadithDetailsModel>((e) {
+              if (e is HadithDetailsModel) return e;
+              if (e is Map) {
+                return HadithDetailsModel.fromJson(
+                  Map<String, dynamic>.from(e),
+                );
+              }
+              if (e is Map<String, dynamic>) {
+                return HadithDetailsModel.fromJson(e);
+              }
+              return HadithDetailsModel.fromJson(
+                Map<String, dynamic>.from(e as Map),
+              );
+            }).toList();
+          }
+          List<HadithDetailsEntitiy> hadithDetailsEntityList = hadithModelList
+              .map((e) => e.toEntity())
+              .toList();
+          return Right(hadithDetailsEntityList);
+        }
       }
       return Left('error'.tr());
     }

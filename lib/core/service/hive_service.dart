@@ -64,7 +64,7 @@ abstract class HiveService {
     await Hive.openBox<SuraDetailsModel>(ApiKeys.suraDetailsBox);
     await Hive.openBox<AudioDetailsModel>(ApiKeys.audioBox);
     await Hive.openBox<HadithModel>(ApiKeys.hadithBox);
-    await Hive.openBox<List<HadithDetailsModel>>(ApiKeys.hadithDetailsBox);
+    await Hive.openBox(ApiKeys.hadithDetailsBox);
     await Hive.openBox<AzkarModel>(ApiKeys.azkarMorningBox);
     await Hive.openBox<AzkarModel>(ApiKeys.azkarEveningBox);
     await Hive.openBox<PrayModel>(ApiKeys.prayBox);
