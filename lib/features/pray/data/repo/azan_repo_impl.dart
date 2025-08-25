@@ -62,79 +62,81 @@ class AzanRepoImpl implements AzanRepo {
     final prayer = Hive.box<PrayModel>(ApiKeys.prayBox);
     final prayModel = prayer.values.first;
 
-    if (prayModel.timings == null) return;
+    if (prayModel.timings == null) {
+      return;
+    } else {
+      DateTime? parsePrayerTime(String? t) {
+        if (t == null) return null;
+        final match = RegExp(r"(\d{1,2}:\d{2})").firstMatch(t);
+        if (match == null) return null;
+        final parts = match.group(1)!.split(":");
+        final hour = int.parse(parts[0]);
+        final minute = int.parse(parts[1]);
+        final now = DateTime.now();
+        return DateTime(now.year, now.month, now.day, hour, minute);
+      }
 
-    DateTime? parsePrayerTime(String? t) {
-      if (t == null) return null;
-      final match = RegExp(r"(\d{1,2}:\d{2})").firstMatch(t);
-      if (match == null) return null;
-      final parts = match.group(1)!.split(":");
-      final hour = int.parse(parts[0]);
-      final minute = int.parse(parts[1]);
-      final now = DateTime.now();
-      return DateTime(now.year, now.month, now.day, hour, minute);
-    }
+      DateTime ensureFuture(DateTime dt) {
+        if (dt.isBefore(DateTime.now())) return dt.add(const Duration(days: 1));
+        return dt;
+      }
 
-    DateTime ensureFuture(DateTime dt) {
-      if (dt.isBefore(DateTime.now())) return dt.add(const Duration(days: 1));
-      return dt;
-    }
+      final fajrTime = parsePrayerTime(prayModel.timings?.fajr);
+      final dhuhrTime = parsePrayerTime(prayModel.timings?.dhuhr);
+      final asrTime = parsePrayerTime(prayModel.timings?.asr);
+      final maghribTime = parsePrayerTime(prayModel.timings?.maghrib);
+      final ishaTime = parsePrayerTime(prayModel.timings?.isha);
 
-    final fajrTime = parsePrayerTime(prayModel.timings?.fajr);
-    final dhuhrTime = parsePrayerTime(prayModel.timings?.dhuhr);
-    final asrTime = parsePrayerTime(prayModel.timings?.asr);
-    final maghribTime = parsePrayerTime(prayModel.timings?.maghrib);
-    final ishaTime = parsePrayerTime(prayModel.timings?.isha);
-
-    if (fajrTime != null) {
-      log("fajr time======= ${fajrTime.toString()}");
-      await scheduleAdhan(
-        id: 101,
-        prayerTimeLocal: ensureFuture(fajrTime),
-        title: 'أذان الفجر',
-        body: 'حان الآن موعد أذان الفجر',
-        playSound: playSound,
-      );
-    }
-    if (dhuhrTime != null) {
-      log("dhuhr time======= ${dhuhrTime.toString()}");
-      await scheduleAdhan(
-        id: 102,
-        prayerTimeLocal: ensureFuture(dhuhrTime),
-        title: 'أذان الظهر',
-        body: 'حان الآن موعد أذان الظهر',
-        playSound: playSound,
-      );
-    }
-    if (asrTime != null) {
-      log("asr time======= ${asrTime.toString()}");
-      await scheduleAdhan(
-        id: 103,
-        prayerTimeLocal: ensureFuture(asrTime),
-        title: 'أذان العصر',
-        body: 'حان الآن موعد أذان العصر',
-        playSound: playSound,
-      );
-    }
-    if (maghribTime != null) {
-      log("maghrib time======= ${maghribTime.toString()}");
-      await scheduleAdhan(
-        id: 104,
-        prayerTimeLocal: ensureFuture(maghribTime),
-        title: 'أذان المغرب',
-        body: 'حان الآن موعد أذان المغرب',
-        playSound: playSound,
-      );
-    }
-    if (ishaTime != null) {
-      log("isha time======= ${ishaTime.toString()}");
-      await scheduleAdhan(
-        id: 105,
-        prayerTimeLocal: ensureFuture(ishaTime),
-        title: 'أذان العشاء',
-        body: 'حان الآن موعد أذان العشاء',
-        playSound: playSound,
-      );
+      if (fajrTime != null) {
+        log("fajr time======= ${fajrTime.toString()}");
+        await scheduleAdhan(
+          id: 101,
+          prayerTimeLocal: ensureFuture(fajrTime),
+          title: 'أذان الفجر',
+          body: 'حان الآن موعد أذان الفجر',
+          playSound: playSound,
+        );
+      }
+      if (dhuhrTime != null) {
+        log("dhuhr time======= ${dhuhrTime.toString()}");
+        await scheduleAdhan(
+          id: 102,
+          prayerTimeLocal: ensureFuture(dhuhrTime),
+          title: 'أذان الظهر',
+          body: 'حان الآن موعد أذان الظهر',
+          playSound: playSound,
+        );
+      }
+      if (asrTime != null) {
+        log("asr time======= ${asrTime.toString()}");
+        await scheduleAdhan(
+          id: 103,
+          prayerTimeLocal: ensureFuture(asrTime),
+          title: 'أذان العصر',
+          body: 'حان الآن موعد أذان العصر',
+          playSound: playSound,
+        );
+      }
+      if (maghribTime != null) {
+        log("maghrib time======= ${maghribTime.toString()}");
+        await scheduleAdhan(
+          id: 104,
+          prayerTimeLocal: ensureFuture(maghribTime),
+          title: 'أذان المغرب',
+          body: 'حان الآن موعد أذان المغرب',
+          playSound: playSound,
+        );
+      }
+      if (ishaTime != null) {
+        log("isha time======= ${ishaTime.toString()}");
+        await scheduleAdhan(
+          id: 105,
+          prayerTimeLocal: ensureFuture(ishaTime),
+          title: 'أذان العشاء',
+          body: 'حان الآن موعد أذان العشاء',
+          playSound: playSound,
+        );
+      }
     }
   }
 }

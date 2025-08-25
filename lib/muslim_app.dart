@@ -22,13 +22,17 @@ class MuslimApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeBloc()),
-        BlocProvider(create: (context) => TranslationsBloc()),
+        BlocProvider(
+          create: (context) =>
+              TranslationsBloc()..add(ChangeLocaleEvent(isArabic: true)),
+        ),
         BlocProvider(
           create: (context) => QuranCubit(getIt<QuranRepo>())..getAllSura(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
+          context.setLocale(Locale('ar'));
           return ScreenUtilInit(
             designSize: const Size(430, 932),
             minTextAdapt: true,
@@ -38,7 +42,7 @@ class MuslimApp extends StatelessWidget {
                 onGenerateRoute: OngenerateRoutes.onGenerateRoute,
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
-                locale: context.locale,
+                locale: Locale('ar'),
                 theme: state.isDarkMode ? darkTheme() : lightTheme(),
                 debugShowCheckedModeBanner: false,
                 initialRoute:

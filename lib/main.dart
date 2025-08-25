@@ -6,6 +6,7 @@ import 'package:muslim_app/core/service/local_notification_service.dart';
 import 'package:muslim_app/core/service/my_bloc_observer.dart';
 import 'package:muslim_app/core/service/service_locator.dart';
 import 'package:muslim_app/core/service/shared_prefs_service.dart';
+import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/features/pray/data/repo/azan_repo_impl.dart';
 import 'package:muslim_app/muslim_app.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,7 +17,9 @@ void main() async {
   await HiveService.initHive();
   await SharedPrefsService.init();
   await LocalNotificationService.init();
-  await AzanRepoImpl().scheduleTodayAdhan();
+  if (SharedPrefsService.getData(AppConst.kFirstTime) == true) {
+    await AzanRepoImpl().scheduleTodayAdhan();
+  }
 
   Bloc.observer = MyBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(

@@ -6,7 +6,7 @@ part 'translations_state.dart';
 
 class TranslationsBloc
     extends HydratedBloc<TranslationsEvent, TranslationsState> {
-  TranslationsBloc() : super(TranslationsInitial(isArabic: true)) {
+  TranslationsBloc() : super(TranslationsInitial(isArabic: false)) {
     on<ChangeLocaleEvent>(_changeLanguage);
   }
 
