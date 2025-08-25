@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +9,6 @@ import 'package:muslim_app/core/utils/app_images.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
 import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
 import 'package:muslim_app/core/widgets/custom_loading_app.dart';
-import 'package:muslim_app/features/pray/data/repo/azan_repo_impl.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_cubit.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/pray_cubit/pray_state.dart';
 import 'package:muslim_app/features/pray/presentation/widgets/azkar_item.dart';
@@ -110,34 +107,18 @@ class PrayBody extends StatelessWidget {
                             ),
                           ),
                           PositionedDirectional(
-                            bottom: 8,
+                            bottom: 16,
                             start: 16,
                             end: 16,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                IconButton(
-                                  padding: EdgeInsets.zero,
-                                  onPressed: () {
-                                    AzanRepoImpl().scheduleTodayAdhan(
-                                      playSound: !state.isSound,
-                                    );
-                                    log('isSound: ${!state.isSound}');
-                                  },
-                                  icon: Icon(
-                                    state.isSound
-                                        ? Icons.volume_up_rounded
-                                        : Icons.volume_off_rounded,
-                                    color: AppColors.primaryLightColor,
-                                  ),
-                                ),
                                 Text(
                                   '${'next_prayer'.tr()} ${state.nextPrayerName}: ${DateFormat('HH:mm').format(state.nextPrayerTime)}',
                                   style: AppStyles.style13SemiBold.copyWith(
                                     color: AppColors.scaffoldBgDarkColor,
                                   ),
                                 ),
-                                Container(width: 42),
                               ],
                             ),
                           ),
