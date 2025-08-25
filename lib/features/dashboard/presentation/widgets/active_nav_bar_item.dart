@@ -28,10 +28,7 @@ class ActiveNavBarItem extends StatelessWidget {
           ),
         ),
         verticalSpace(5),
-        Text(
-          navBarModel.lable,
-          style: AppStyles.style13Bold.copyWith(fontSize: 12),
-        ),
+        Text(navBarModel.lable, style: AppStyles.style13Bold),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/utils/app_colors.dart';
 import 'package:muslim_app/core/utils/app_const.dart';
 import 'package:muslim_app/core/utils/app_styles.dart';
+import 'package:muslim_app/core/utils/extention/navigator_extention.dart';
 import 'package:muslim_app/core/widgets/custom_button.dart';
 import 'package:muslim_app/features/pray/presentation/cubit/azkar_cubit/azkar_cubit.dart';
 
@@ -67,20 +68,21 @@ class CustomAzkarNavbar extends StatelessWidget {
           ),
         ),
         verticalSpace(24),
-        Visibility(
-          maintainSize: true,
-          maintainState: true,
-          maintainAnimation: true,
-          visible: index != length,
-          child: CustomButton(
-            bottom: Text('next'.tr()),
-            onPressed: () {
-              if (index < length) {
-                context.read<AzkarCubit>().nextPage(length);
-              }
-            },
-          ),
-        ),
+        index != length - 1
+            ? CustomButton(
+                bottom: Text('next'.tr()),
+                onPressed: () {
+                  if (index < length) {
+                    context.read<AzkarCubit>().nextPage(length);
+                  }
+                },
+              )
+            : CustomButton(
+                bottom: Text('finsh'.tr()),
+                onPressed: () {
+                  context.pop();
+                },
+              ),
         verticalSpace(16),
       ],
     );
