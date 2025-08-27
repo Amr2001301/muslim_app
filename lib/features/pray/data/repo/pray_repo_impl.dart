@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive/hive.dart';
@@ -19,6 +21,7 @@ class PrayRepoImpl extends PrayRepo {
     required double longitude,
   }) async {
     try {
+      log("latitude: $latitude, longitude: $longitude");
       final response = await api.get(
         path: ApiEndpiont.getPrayerTime,
         queryParameters: {"latitude": latitude, "longitude": longitude},

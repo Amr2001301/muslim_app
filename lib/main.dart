@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:muslim_app/core/service/get_current_location_service.dart';
 import 'package:muslim_app/core/service/hive_service.dart';
 import 'package:muslim_app/core/service/local_notification_service.dart';
 import 'package:muslim_app/core/service/my_bloc_observer.dart';
@@ -17,6 +18,7 @@ void main() async {
   await HiveService.initHive();
   await SharedPrefsService.init();
   await LocalNotificationService.init();
+  await GetCurrentLocationService.determinePosition();
   if (SharedPrefsService.getData(AppConst.kFirstTime) == true) {
     await AzanRepoImpl().scheduleTodayAdhan();
   }
