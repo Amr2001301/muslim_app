@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -18,9 +20,11 @@ void main() async {
   await HiveService.initHive();
   await SharedPrefsService.init();
   await LocalNotificationService.init();
+  await LocalNotificationService.requestNotificationPermission();
   await GetCurrentLocationService.determinePosition();
-  if (SharedPrefsService.getData(AppConst.kFirstTime) == true) {
+  if (SharedPrefsService.getData(AppConst.kIsPrayerLoaded) == true) {
     await AzanRepoImpl().scheduleTodayAdhan();
+    log("=================================================Prayer loaded");
   }
 
   Bloc.observer = MyBlocObserver();

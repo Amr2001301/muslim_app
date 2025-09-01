@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -8,6 +9,15 @@ import 'package:timezone/timezone.dart' as tz;
 FutureOr<void> onSelectNotification(NotificationResponse details) async {}
 
 class LocalNotificationService {
+  static Future<void> requestNotificationPermission() async {
+    final status = await Permission.notification.request();
+    if (status.isGranted) {
+      log("Notification permission granted");
+    } else {
+      log("Notification permission denied");
+    }
+  }
+
   static final flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
